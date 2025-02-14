@@ -1,58 +1,60 @@
-import { useEffect, useState } from "react";
 import "./App.css";
 import Text from "./Components/Text/Text";
-import { Colors, useTheme } from './Components/Themes/Theme';
+import MouseCircle from "./Components/MouseCircle/MouseCircle";
+import { useEffect, useState } from "react";
+import { Colors, getTheme } from "./Components/Themes/Theme";
 
 function App() {
-    const the_theme = useTheme();
+    const [theme, setTheme] = useState<"Dark" | "Light">(
+        localStorage.getItem("theme") as "Dark" | "Light"
+    );
+    const [override, setOverride] = useState<boolean>(false);
+    const [color, setColors] = useState<"Dark" | "Light">("Dark");
+    const Color = Colors[`${color}`];
 
-	const Color = Colors[`${the_theme}`];
+    const systemTheme = getTheme();
 
-    function mousePosition(event: MouseEvent) {
-        const circle = document.getElementById("circle");
-        if (circle) {
-            setTimeout(() => {
-                circle.style.left = event.clientX - 50 + "px";
-                circle.style.top = event.clientY - 50 + "px";
-            }, 100);
-        }
-    }
-
-    function mouseOut() {
-        const circle = document.getElementById("circle");
-        if (circle) {
-            circle.style.opacity = "0";
-        }
-    }
-
-    function mouseEnter() {
-        const circle = document.getElementById("circle");
-        if (circle) {
-            circle.style.opacity = "1";
-        }
-    }
+    const parentDiv = document.getElementById("parentDiv");
 
     useEffect(() => {
-        const parentDiv = document.getElementById("parentDiv");
-        console.log(parentDiv);
-        window.addEventListener("mousemove", mousePosition);
-        parentDiv?.addEventListener("mouseleave", mouseOut);
-        parentDiv?.addEventListener("mouseenter", mouseEnter);
-        return () => {
-            window.removeEventListener("mousemove", mousePosition);
-            parentDiv?.removeEventListener("mouseleave", mouseOut);
-            parentDiv?.removeEventListener("mouseenter", mouseEnter);
-        };
-    }, []);
+        console.log(theme);
+        if (override) {
+            localStorage.setItem("theme", theme);
+            localStorage.setItem("override", "true");
+            setTheme(localStorage.getItem("theme") as "Dark" | "Light");
+            setColors(theme);
+        } else {
+            setColors(systemTheme);
+        }
+    }, [theme, override, systemTheme]);
+
+    const ThemeToggle = () => {
+        return (
+            <a
+                onClick={() => {
+                    setTheme(theme === "Dark" ? "Light" : "Dark");
+                    setOverride(true);
+                    localStorage.setItem("override", "true");
+                }}
+            >
+                {localStorage.getItem("theme")
+                    ? localStorage.getItem("theme")
+                    : getTheme()}
+            </a>
+        );
+    };
+
     return (
         <>
-            <div id="circle" className="darkCircle"></div>
+            <MouseCircle parentDiv={parentDiv} />
             <div
                 id="parentDiv"
                 className="ParentDiv"
                 style={{
+                    transition:
+                        "background-color 0.5s ease-in-out, color 0.5s ease-in-out",
                     backgroundColor: `${Color?.backgroundColor}`,
-                    color: Color?.textColor,
+                    color: `${Color?.textColor.default}`,
                 }}
             >
                 <div
@@ -70,6 +72,7 @@ function App() {
                     <Text text="This is a bodytext" type="body" />
                     <Text text="This is a caption" type="caption" />
                     <Text text="This is a default" />
+                    <ThemeToggle />
                 </div>
             </div>
         </>

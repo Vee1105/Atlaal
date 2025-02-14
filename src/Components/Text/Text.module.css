@@ -1,25 +1,17 @@
 .text {
-    color: hsla(0, 30%, 100%, 1);
     font-size: 1.6rem;
 }
 
 .title {
-    color: #fff;
     font-size: 3.2rem;
     margin-bottom: 1rem;
 }
 
 .subtitle {
-    color: hsla(0, 20%, 95%, 0.9);
     font-size: 2.4rem;
     margin-bottom: 1rem;
 }
 
 .body {
-    color: hsla(0, 30%, 100%, 1);
     font-size: 2rem;
-}
-
-.caption {
-    color: hsla(0, 30%, 100%, 0.8);
 }

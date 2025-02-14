@@ -12,16 +12,6 @@
   }
 }
 
-.darkCircle {
-  transition: opacity 0.5s ease-in-out;
-  z-index: -1;
-  width: 100px;
-  height: 100px;
-  background-color: hsla(0, 0%, 100%, 0.2);
-  border-radius: 50%;
-  position: absolute;
-
-}
 
 .ParentDiv {
   width: 100%;
