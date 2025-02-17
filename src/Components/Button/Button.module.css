@@ -1,0 +1,4 @@
+.ButtonStyling:hover {
+    filter: drop-shadow(0 0 1em hsl(205, 70%, 70%));
+    transition: 0.5s;
+}

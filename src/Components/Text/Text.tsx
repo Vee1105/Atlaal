@@ -4,11 +4,11 @@ import { Colors, getTheme } from '../Themes/Theme';
 
 type TextProps = {
 	type?: "title" | "subtitle" | "body" | "caption";
-	text: string;
+	children: React.ReactNode;
 	style?: React.CSSProperties | undefined;
 };
 
-export default function Text({ type, text, style }: TextProps) {
+export default function Text({ type, children, style }: TextProps) {
 
 	const theme = getTheme();
 
@@ -38,27 +38,27 @@ export default function Text({ type, text, style }: TextProps) {
 		<>
 			{type === undefined && (
 				<span style={DefaultStyling} className={styles.text}>
-					{text}
+					{children}
 				</span>
 			)}
 			{type === "title" && (
 				<span style={TitleStyling} className={`${styles.title} ${styles.text}`}>
-					{text}
+					{children}
 				</span>
 			)}
 			{type === "subtitle" && (
 				<span style={SubTitleStyling} className={`${styles.subtitle} ${styles.text}`}>
-					{text}
+					{children}
 				</span>
 			)}
 			{type === "body" && (
 				<span style={BodyStyling} className={`${styles.body} ${styles.text}`}>
-					{text}
+					{children}
 				</span>
 			)}
 			{type === "caption" && (
 				<span style={CaptionStyling} className={`${styles.caption} ${styles.text}`}>
-					{text}
+					{children}
 				</span>
 			)}
 		</>
