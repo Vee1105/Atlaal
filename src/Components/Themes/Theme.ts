@@ -1,7 +1,10 @@
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { setTheme } from "../../store/states/ThemeSlice";
+
 export let Theme = "Dark";
 
 export const getTheme = (): "Dark" | "Light" | "Midnight" => {
-    let theme: string | null = localStorage.getItem("theme") ;
+    let theme: string | null = localStorage.getItem("theme");
     if (theme === null) {
         // get user preference
         const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -15,26 +18,12 @@ export const getTheme = (): "Dark" | "Light" | "Midnight" => {
     return "Dark";
 };
 
-export const SwitchTheme = (
-    setTheme: React.Dispatch<
-        React.SetStateAction<"Dark" | "Light" | "Midnight">
-    >
-) => {
+export const SwitchTheme = () => {
+    const theme = useAppSelector(state => state.theme.mode);
+    console.log(theme);
+    const dispatch = useAppDispatch();
     localStorage.setItem("override", "true");
-    const theme = localStorage.getItem("theme");
-    if (theme === "Light") {
-        localStorage.setItem("theme", "Dark");
-        setTheme("Dark");
-        Theme = "Dark";
-    } else if (theme === "Dark") {
-        localStorage.setItem("theme", "Midnight");
-        setTheme("Midnight");
-        Theme = "Midnight";
-    } else {
-        localStorage.setItem("theme", "Light");
-        setTheme("Light");
-        Theme = "Light";
-    }
+    dispatch(setTheme(theme === "Light" ? "Dark" : theme === "Dark" ? "Midnight" : "Light"));
 };
 
 export type ColorsTypes = {

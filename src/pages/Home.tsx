@@ -1,7 +1,16 @@
+import Header from "../Components/Components/Home/Header";
 import Text from "../Components/Text/Text";
 
-export default function HomePage()  {
+export default function HomePage() {
     return (
-        <Text type="title">Home Page</Text>
-    )
+        <>
+            {/*  Navbar */}
+            <Header />
+            <Text type="title">Home Page</Text>
+            {/* //Collections
+            //  //Top Sellers
+            //  //Categories
+            //  //Footer */}
+        </>
+    );
 }

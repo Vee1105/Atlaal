@@ -1,4 +1,20 @@
-.ButtonStyling:hover {
-    filter: drop-shadow(0 0 1em hsl(205, 70%, 70%));
+.Button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ButtonHover {
+    position: relative;
+    width: 0%;
+    height: 2px;
+    background-color: hsla(210, 5%, 50%, 0);
     transition: 0.5s;
+}
+
+.Button:hover {
+    .ButtonHover {
+        background-color: hsla(210, 5%, 50%, 1);
+        width: 90%;
+    }
 }
