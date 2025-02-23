@@ -1,7 +1,7 @@
-import { Button } from "../../Button/Button";
+import { Button } from "../../../Button/Button";
 import styles from "./Header.module.css";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { setTheme } from "../../../store/states/ThemeSlice";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { setTheme } from "../../../../store/states/ThemeSlice";
 
 export default function Header() {
     return (
@@ -21,7 +21,7 @@ export default function Header() {
     );
 }
 
-const Logo = () => {
+export const Logo = () => {
     const theme = useAppSelector(state => state.theme.mode);
     const styles = {
         transition: "fill 0.5s ease-in-out",

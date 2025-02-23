@@ -15,15 +15,13 @@ function App() {
         transition: "background-color 0.5s ease-in-out, color 0.5s ease-in-out",
     };
     return (
-        <>
-            <div style={ParentThemeStyle} className="ParentDiv">
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<HomePage />} />
-                    </Routes>
-                </BrowserRouter>
-            </div>
-        </>
+        <div style={ParentThemeStyle} className="ParentDiv">
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                </Routes>
+            </BrowserRouter>
+        </div>
     );
 }
 
