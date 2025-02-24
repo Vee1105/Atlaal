@@ -5,25 +5,28 @@ type PanelProps = {
     image: string;
 };
 
-export default function Panel({ children, image }: PanelProps) {
+export default function SidePanel({ children, image }: PanelProps) {
     return (
         <div
             style={{
                 position: "relative",
                 width: "100%",
-                height: "70vh",
+                height: "100%",
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "flex-end",
+                alignItems: "center",
+                gap: 300
             }}
+
         >
             <img
                 src={image}
                 style={{
-                    width: "100%",
+                    width: "30%",
                     height: "100%",
                     objectFit: "cover",
-                    position: "absolute",
+                    opacity: "1",
+                    position: "relative",
                 }}
             />
             <div
@@ -32,7 +35,6 @@ export default function Panel({ children, image }: PanelProps) {
                     display: "flex",
                     alignItems: "center",
                     flexDirection: "column",
-                    marginBottom: "70px",
                 }}
             >
                 {children}

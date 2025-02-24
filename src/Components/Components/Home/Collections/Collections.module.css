@@ -5,8 +5,8 @@
     justify-content: center;
     width: 100%;
     /* background-color: blue; */
-    height: 70vh;
     margin-top: 150px;
+    gap: 50px;
 }
 
 .Collection {
