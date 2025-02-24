@@ -1,5 +1,6 @@
 import Collections from "../Components/Components/Home/Collections/Collections";
 import Header from "../Components/Components/Home/Header/Header";
+import Items from "../Components/Components/Home/Items/Items";
 import styles from "./Home.module.css"
 
 export default function HomePage() {
@@ -8,16 +9,7 @@ export default function HomePage() {
             {/*  Navbar */}
             <Header />
             <Collections />
-            <div>apjeioawjeio waej wioej awioje iowajioe jwaoej wa</div>
-            <div>apjeioawjeio waej wioej awioje iowajioe jwaoej wa</div>
-            <div>apjeioawjeio waej wioej awioje iowajioe jwaoej wa</div>
-            <div>apjeioawjeio waej wioej awioje iowajioe jwaoej wa</div>
-            <div>apjeioawjeio waej wioej awioje iowajioe jwaoej wa</div>
-            <div>apjeioawjeio waej wioej awioje iowajioe jwaoej wa</div>
-            <div>apjeioawjeio waej wioej awioje iowajioe jwaoej wa</div>
-            <div>apjeioawjeio waej wioej awioje iowajioe jwaoej wa</div>
-            <div>apjeioawjeio waej wioej awioje iowajioe jwaoej wa</div>
-            <div>apjeioawjeio waej wioej awioje iowajioe jwaoej wa</div>
+            <Items />
             {/* //Collections
             //  //Top Sellers
             //  //Categories

@@ -4,9 +4,7 @@ export default function LogoOutline({style}: {style?: React.CSSProperties}) {
     const theme = useAppSelector((state) => state.theme.mode);
     const styles = {
         transition: "fill 0.5s ease-in-out",
-        fill: "transparent",
-        stroke: theme === "Light" ? "#000" : "#fff",
-        strokeWidth: "2px",
+        fill: "white",
         ...style,
     };
 

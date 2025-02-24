@@ -18,10 +18,7 @@ export const CollectionButton = ({
 }: ButtonProps) => {
     const theme = useAppSelector((state) => state.theme.mode);
     const style = {
-        color:
-            theme === "Light"
-                ? "#000"
-                : "#000",
+        color: theme === "Light" ? "#000" : "#000",
         width: width ? width : "auto",
         height: height ? height : "auto",
         padding: "5px 20px",
@@ -34,7 +31,6 @@ export const CollectionButton = ({
             <a style={style} className={styles.ButtonStyling} onClick={onClick}>
                 {children}
             </a>
-            <div className={styles.ButtonHover}></div>
         </div>
     );
 };

@@ -7,13 +7,27 @@ export default function Header() {
     return (
         <>
             <div className={styles.Header}>
-                <div style={{ display: "flex", justifyContent: "flex-start", paddingLeft: "20px" }}>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        paddingLeft: "20px",
+                    }}
+                >
                     <LeftSide />
                 </div>
                 <div className={styles.LogoDiv}>
-                    <Logo />
+                    <div style={{width: 200, height: 100}}>
+                        <Logo />
+                    </div>
                 </div>
-                <div style={{ display: "flex", justifyContent: "flex-end", paddingRight: "20px" }}>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        paddingRight: "20px",
+                    }}
+                >
                     <RightSide />
                 </div>
             </div>
@@ -22,7 +36,7 @@ export default function Header() {
 }
 
 export const Logo = () => {
-    const theme = useAppSelector(state => state.theme.mode);
+    const theme = useAppSelector((state) => state.theme.mode);
     const styles = {
         transition: "fill 0.5s ease-in-out",
         fill: theme === "Light" ? "#000" : "#fff",
