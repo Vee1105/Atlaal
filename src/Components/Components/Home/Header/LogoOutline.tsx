@@ -1,7 +1,5 @@
-import { useAppSelector } from "../../../../store/hooks";
 
 export default function LogoOutline({style}: {style?: React.CSSProperties}) {
-    const theme = useAppSelector((state) => state.theme.mode);
     const styles = {
         transition: "fill 0.5s ease-in-out",
         fill: "white",

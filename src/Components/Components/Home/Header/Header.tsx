@@ -1,12 +1,37 @@
 import { Button } from "../../../Button/Button";
 import styles from "./Header.module.css";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { setTheme } from "../../../../store/states/ThemeSlice";
+import { useAppSelector } from "../../../../store/hooks";
+import { useState } from "react";
 
 export default function Header() {
+    const [headerHovered, setHeaderHovered] = useState(false);
+
+    const theme = useAppSelector((state) => state.theme.mode);
+
+    const TransistionStyles = {
+        transition: "all 0.5s ease-in-out",
+        width: 200,
+        height: 100,
+    }
+
     return (
         <>
-            <div className={styles.Header}>
+            <div
+                style={
+                    headerHovered
+                        ? theme === "Light"
+                            ? { backgroundColor: "#fff" }
+                            : { backgroundColor: "#0e0e0e" }
+                        : {}
+                }
+                onMouseEnter={() => {
+                    setHeaderHovered(true);
+                }}
+                onMouseLeave={() => {
+                    setHeaderHovered(false);
+                }}
+                className={styles.Header}
+            >
                 <div
                     style={{
                         display: "flex",
@@ -17,7 +42,7 @@ export default function Header() {
                     <LeftSide />
                 </div>
                 <div className={styles.LogoDiv}>
-                    <div style={{width: 200, height: 100}}>
+                    <div style={TransistionStyles}>
                         <Logo />
                     </div>
                 </div>
@@ -34,6 +59,7 @@ export default function Header() {
         </>
     );
 }
+
 
 export const Logo = () => {
     const theme = useAppSelector((state) => state.theme.mode);
@@ -79,37 +105,55 @@ export const Logo = () => {
 
 const LeftSide = () => {
     return (
-        <>
+        <div className={styles.LeftSide}>
             <Button>Categories</Button>
             <Button>Design It</Button>
             <Button>Contanct Us</Button>
-        </>
+        </div>
     );
 };
 
 const RightSide = () => {
-    const theme = useAppSelector((state) => state.theme.mode);
-    const dispatch = useAppDispatch();
-
     return (
-        <>
-            <Button>Search</Button>
-            <Button>Cart</Button>
-            <Button
-                onClick={() =>
-                    dispatch(
-                        setTheme(
-                            theme === "Light"
-                                ? "Dark"
-                                : theme === "Dark"
-                                ? "Midnight"
-                                : "Light"
-                        )
-                    )
-                }
-            >
-                Theme
+        <div className={styles.RightSide}>
+            <Button>
+                <Search />
             </Button>
-        </>
+            <Button>
+                <Cart />
+            </Button>
+        </div>
+    );
+};
+
+const Search = () => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+        >
+            <path
+                fill="currentColor"
+                d="m18.031 16.617l4.283 4.282l-1.415 1.415l-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9s9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617m-2.006-.742A6.98 6.98 0 0 0 18 11c0-3.867-3.133-7-7-7s-7 3.133-7 7s3.133 7 7 7a6.98 6.98 0 0 0 4.875-1.975z"
+            />
+        </svg>
+    );
+};
+
+const Cart = () => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+        >
+            <path
+                fill="currentColor"
+                d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1m-9-1a2 2 0 0 1 4 0v1h-4Zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2Z"
+            />
+        </svg>
     );
 };
