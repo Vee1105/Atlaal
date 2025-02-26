@@ -1,16 +1,15 @@
-import Collections from "../Components/Components/Home/Collections/Collections";
+import Body from "../Components/Components/Home/Collections/Body";
 import Header from "../Components/Components/Home/Header/Header";
 import Items from "../Components/Components/Home/Items/Items";
-import ThemeSwitch from "../Components/Components/ThemeSwitch/ThemeSwitch";
 import styles from "./Home.module.css"
 
 export default function HomePage() {
     return (
         <div className={styles.Home}>
-            <ThemeSwitch />
+            {/* <ThemeSwitch /> */}
             {/*  Navbar */}
             <Header />
-            <Collections />
+            <Body />
             <Items />
             {/* //Collections
             //  //Top Sellers

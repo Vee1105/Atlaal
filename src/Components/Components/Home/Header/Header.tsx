@@ -1,65 +1,88 @@
 import { Button } from "../../../Button/Button";
 import styles from "./Header.module.css";
 import { useAppSelector } from "../../../../store/hooks";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 export default function Header() {
-    const [headerHovered, setHeaderHovered] = useState(false);
+    const width = 1100;
+    const height = width / 2;
 
-    const theme = useAppSelector((state) => state.theme.mode);
+    const SmallWidth = 100;
+    const SmallHeight = SmallWidth / 2;
 
     const TransistionStyles = {
-        transition: "all 0.5s ease-in-out",
-        width: 200,
-        height: 100,
-    }
+        width: width,
+        height: height,
+        marginTop: 40,
+        opacity: 0.6,
+    };
+
+    const LogoRef = useRef(null);
+
+    const HeaderRef = useRef(null);
+
+    gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+    useGSAP(() => {
+        gsap.to(LogoRef.current, {
+            scrollTrigger: {
+                trigger: "body",
+                start: "top -5%",
+                end: "top -5%",
+                toggleActions: "play none reverse none",
+            },
+            duration: 0.5,
+            ease: "power2.inOut",
+            width: SmallWidth,
+            height: SmallHeight,
+            marginTop: 0,
+            opacity: 1,
+        });
+
+        gsap.set(HeaderRef.current, {
+            scrollTrigger: {
+                trigger: "body",
+                start: "top -5%",
+                end: "top -5%",
+                toggleActions: "play none reverse none",
+            },
+            duration: 0.5,
+            ease: "power2.inOut",
+            backgroundColor: "#000",
+        });
+    });
 
     return (
-        <>
+        <div ref={HeaderRef} className={styles.Header}>
             <div
-                style={
-                    headerHovered
-                        ? theme === "Light"
-                            ? { backgroundColor: "#fff" }
-                            : { backgroundColor: "#0e0e0e" }
-                        : {}
-                }
-                onMouseEnter={() => {
-                    setHeaderHovered(true);
+                style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    paddingLeft: "20px",
                 }}
-                onMouseLeave={() => {
-                    setHeaderHovered(false);
-                }}
-                className={styles.Header}
             >
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "flex-start",
-                        paddingLeft: "20px",
-                    }}
-                >
-                    <LeftSide />
-                </div>
-                <div className={styles.LogoDiv}>
-                    <div style={TransistionStyles}>
-                        <Logo />
-                    </div>
-                </div>
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        paddingRight: "20px",
-                    }}
-                >
-                    <RightSide />
+                <LeftSide />
+            </div>
+            <div className={styles.LogoDiv}>
+                <div ref={LogoRef} style={TransistionStyles}>
+                    <Logo />
                 </div>
             </div>
-        </>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    paddingRight: "20px",
+                }}
+            >
+                <RightSide />
+            </div>
+        </div>
     );
 }
-
 
 export const Logo = () => {
     const theme = useAppSelector((state) => state.theme.mode);

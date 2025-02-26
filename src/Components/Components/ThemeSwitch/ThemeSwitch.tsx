@@ -37,8 +37,8 @@ const Night = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="35"
-            height="35"
+            width="20"
+            height="20"
             viewBox="0 0 2048 2048"
         >
             <path
@@ -53,8 +53,8 @@ const Day = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="35"
-            height="35"
+            width="20"
+            height="20"
             viewBox="0 0 2048 2048"
         >
             <path

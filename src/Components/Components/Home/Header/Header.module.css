@@ -1,6 +1,6 @@
 .Header {
     width: 100%;
-    height: 120px;
+    height: 60px;
     display: flex;
     justify-content: space-between;
     position: fixed;
@@ -25,10 +25,10 @@
 
 .LeftSide {
     display: flex;
-    margin-top: 25px;
+    margin-top: 10px;
 }
 
 .RightSide {
     display: flex;
-    margin-top: 25px;
+    margin-top: 10px;
 }

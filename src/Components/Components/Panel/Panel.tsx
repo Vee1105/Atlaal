@@ -11,7 +11,7 @@ export default function Panel({ children, image }: PanelProps) {
             style={{
                 position: "relative",
                 width: "100%",
-                height: "70vh",
+                height: "100vh",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "flex-end",

@@ -1,4 +1,4 @@
-import styles from "./Collections.module.css";
+import styles from "./Body.module.css";
 import WinterCollection from "/WinterCollection.jpg";
 import SummerImage from "/SummerCollection.jpg";
 import OceanOfFahsion from "/OceanOfFashion.jpg";
@@ -12,7 +12,7 @@ import Model1 from "/Model1.jpg";
 import Model2 from "/Model2.jpg";
 import Model3 from "/Model3.jpg";
 
-export default function Collections() {
+export default function Body() {
     return (
         <div className={styles.Collections}>
             <Panel image={WinterCollection}>
