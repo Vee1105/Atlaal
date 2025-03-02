@@ -6,7 +6,9 @@ export type ButtonProps = {
     width?: string | number;
     height?: string | number;
     ButtonStyling?: React.CSSProperties;
+    DivStyling?: React.CSSProperties;
     onClick?: () => void;
+    ref?: React.RefObject<null>;
 };
 
 export const CollectionButton = ({
@@ -15,6 +17,8 @@ export const CollectionButton = ({
     height,
     onClick,
     ButtonStyling,
+    ref,
+    DivStyling,
 }: ButtonProps) => {
     const theme = useAppSelector((state) => state.theme.mode);
     const style = {
@@ -27,7 +31,7 @@ export const CollectionButton = ({
     };
 
     return (
-        <div className={styles.Button}>
+        <div style={DivStyling} ref={ref} className={styles.Button}>
             <a style={style} className={styles.ButtonStyling} onClick={onClick}>
                 {children}
             </a>
