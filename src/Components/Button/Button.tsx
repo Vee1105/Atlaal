@@ -9,7 +9,7 @@ export type ButtonProps = {
     onClick?: () => void;
 };
 
-export const Button = ({
+const Button = ({
     children,
     width,
     height,
@@ -38,3 +38,5 @@ export const Button = ({
         </div>
     );
 };
+
+export default Button;

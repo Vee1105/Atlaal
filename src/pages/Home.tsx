@@ -1,6 +1,8 @@
-import Body from "../Components/Components/Home/Collections/Body";
-import Header from "../Components/Components/Home/Header/Header";
-import Items from "../Components/Components/Home/Items/Items";
+import { lazy } from "react";
+const Body = lazy(() => import("../Components/Components/Home/Collections/Body"));
+const Header = lazy(() => import("../Components/Components/Home/Header/Header"));
+const Items = lazy(() => import("../Components/Components/Home/Items/Items"));
+const Footer = lazy(() => import("../Components/Components/Footer/Footer"));
 import styles from "./Home.module.css"
 
 export default function HomePage() {
@@ -11,6 +13,7 @@ export default function HomePage() {
             <Header />
             <Body />
             <Items />
+            <Footer />
             {/* //Collections
             //  //Top Sellers
             //  //Categories

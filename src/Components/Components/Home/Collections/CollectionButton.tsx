@@ -11,7 +11,7 @@ export type ButtonProps = {
     ref?: React.RefObject<null>;
 };
 
-export const CollectionButton = ({
+const CollectionButton = ({
     children,
     width,
     height,
@@ -38,3 +38,5 @@ export const CollectionButton = ({
         </div>
     );
 };
+
+export default CollectionButton;

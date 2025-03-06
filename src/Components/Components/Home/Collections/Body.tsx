@@ -1,18 +1,18 @@
+import { lazy, useRef } from "react";
 import styles from "./Body.module.css";
 import WinterCollection from "/WinterCollection.jpg";
 import SummerImage from "/SummerCollection.jpg";
 import OceanOfFahsion from "/OceanOfFashion.jpg";
-import Text from "../../../Text/Text";
-import { CollectionButton } from "./CollectionButton";
-import Panel from "../../Panel/Panel";
-import SidePanel from "../../Panel/SidePanel";
-import MultiImagePanel from "../../Panel/MultiImagePanel";
+const Text = lazy(() => import("../../../Text/Text"));
+const CollectionButton = lazy(() => import("./CollectionButton"));
+const Panel = lazy(() => import("../../Panel/Panel"));
+const SidePanel = lazy(() => import("../../Panel/SidePanel"));
+const MultiImagePanel = lazy(() => import("../../Panel/MultiImagePanel"));
 
 import Model1 from "/Model1.jpg";
 import Model2 from "/Model2.jpg";
 import Model3 from "/Model3.jpg";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
 import gsap from "gsap";
 
 export default function Body() {

@@ -1,7 +1,7 @@
-import { Button } from "../../../Button/Button";
+import { lazy, useRef } from "react";
+const Button = lazy(() => import("../../../Button/Button"));
 import styles from "./Header.module.css";
 import { useAppSelector } from "../../../../store/hooks";
-import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -29,6 +29,25 @@ export default function Header() {
     gsap.registerPlugin(useGSAP, ScrollTrigger);
 
     useGSAP(() => {
+
+        const StartingTimeline = gsap.timeline({
+            
+        });
+
+        StartingTimeline.to(letters, {
+            stagger: 0.1,
+            duration: 0.5,
+            ease: "power3.inOut",
+            scale: 1.1,
+        })
+
+        StartingTimeline.to(letters, {
+            stagger: 0.1,
+            duration: 0.5,
+            ease: "power3.inOut",
+            scale: 1,
+        })
+
         gsap.to(LogoRef.current, {
             scrollTrigger: {
                 trigger: "body",
@@ -109,9 +128,6 @@ export const Logo = () => {
         fill: theme === "Light" ? "#000" : "#fff",
     };
 
-    const SVGREF = useRef(null);
-
-
     return (
         <div>
             <svg
@@ -119,7 +135,6 @@ export const Logo = () => {
                 data-name="Layer 2"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 649.52 315.34"
-                ref={SVGREF}
             >
                 <g id="Layer_1-2" data-name="Layer 1">
                     <g>

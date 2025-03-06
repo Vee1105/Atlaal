@@ -16,7 +16,10 @@ export default function SidePanel({Direction ,children, image, style }: PanelPro
 
     useGSAP(() => {
         gsap.to(ImageRef.current, {
-            scrollTrigger: ImageRef.current,
+            scrollTrigger: {
+                trigger: ImageRef.current,
+                start: "top bottom",
+            },
             duration: 1,
             opacity: 1,
             translate: "0 0",
