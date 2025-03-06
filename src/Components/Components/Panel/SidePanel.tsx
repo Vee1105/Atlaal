@@ -1,4 +1,6 @@
-import React from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import React, { useRef } from "react";
 
 type PanelProps = {
     children: React.ReactNode;
@@ -8,6 +10,20 @@ type PanelProps = {
 };
 
 export default function SidePanel({Direction ,children, image, style }: PanelProps) {
+
+    const ImageRef = useRef(null);
+
+
+    useGSAP(() => {
+        gsap.to(ImageRef.current, {
+            scrollTrigger: ImageRef.current,
+            duration: 1,
+            opacity: 1,
+            translate: "0 0",
+            ease: "power3.inOut",
+        })
+    })
+
     return (
         <div
             style={{
@@ -23,12 +39,15 @@ export default function SidePanel({Direction ,children, image, style }: PanelPro
 
         >
             <img
+                id="Image"
+                ref={ImageRef}
                 src={image}
                 style={{
                     width: "40%",
                     height: "100%",
                     objectFit: "cover",
-                    opacity: "1",
+                    opacity: "0",
+                    translate: "0 50px",
                     position: "relative",
                 }}
             />

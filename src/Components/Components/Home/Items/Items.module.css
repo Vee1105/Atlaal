@@ -3,23 +3,13 @@
     height: 700px;
 }
 
-.ItemsContainer {
+.Item {
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    height: 700px;
     align-items: center;
-
-}
-
-.ItemSlider {
-    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    overflow-x: scroll;
+    gap: 20%;
+    overflow: auto;
 }
 
 .ItemDisplay {
@@ -27,4 +17,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-width: 40%;
+    max-width: 40%;
 }
+
+.ItemDisplay > img {
+    width: 100%;
+}
+

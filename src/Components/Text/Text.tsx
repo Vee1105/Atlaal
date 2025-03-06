@@ -42,9 +42,9 @@ export default function Text({ type, children, style }: TextProps) {
 				</span>
 			)}
 			{type === "title" && (
-				<span style={TitleStyling} className={`${styles.title} ${styles.text}`}>
+				<h1 style={TitleStyling} className={`${styles.title} ${styles.text}`}>
 					{children}
-				</span>
+				</h1>
 			)}
 			{type === "subtitle" && (
 				<span style={SubTitleStyling} className={`${styles.subtitle} ${styles.text}`}>
