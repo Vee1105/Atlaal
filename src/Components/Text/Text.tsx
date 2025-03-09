@@ -6,9 +6,10 @@ type TextProps = {
 	type?: "title" | "subtitle" | "body" | "caption";
 	children: React.ReactNode;
 	style?: React.CSSProperties | undefined;
+	ref?: React.RefObject<null>;
 };
 
-export default function Text({ type, children, style }: TextProps) {
+export default function Text({ type, children, style, ref }: TextProps) {
 
 	const theme = getTheme();
 
@@ -37,27 +38,27 @@ export default function Text({ type, children, style }: TextProps) {
 	return (
 		<>
 			{type === undefined && (
-				<span style={DefaultStyling} className={styles.text}>
+				<span ref={ref} style={DefaultStyling} className={styles.text}>
 					{children}
 				</span>
 			)}
 			{type === "title" && (
-				<h1 style={TitleStyling} className={`${styles.title} ${styles.text}`}>
+				<span ref={ref} style={TitleStyling} className={`${styles.title} ${styles.text}`}>
 					{children}
-				</h1>
+				</span>
 			)}
 			{type === "subtitle" && (
-				<span style={SubTitleStyling} className={`${styles.subtitle} ${styles.text}`}>
+				<span ref={ref} style={SubTitleStyling} className={`${styles.subtitle} ${styles.text}`}>
 					{children}
 				</span>
 			)}
 			{type === "body" && (
-				<span style={BodyStyling} className={`${styles.body} ${styles.text}`}>
+				<span ref={ref} style={BodyStyling} className={`${styles.body} ${styles.text}`}>
 					{children}
 				</span>
 			)}
 			{type === "caption" && (
-				<span style={CaptionStyling} className={`${styles.caption} ${styles.text}`}>
+				<span ref={ref} style={CaptionStyling} className={`${styles.caption} ${styles.text}`}>
 					{children}
 				</span>
 			)}

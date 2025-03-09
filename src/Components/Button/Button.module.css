@@ -14,7 +14,7 @@
 
 .Button:hover {
     .ButtonHover {
-        background-color: hsla(210, 5%, 50%, 1);
+        background-color: rgb(80, 80, 80);
         width: 90%;
     }
 }

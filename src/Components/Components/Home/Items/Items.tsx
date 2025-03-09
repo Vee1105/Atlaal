@@ -37,6 +37,21 @@ export default function Items() {
                     <DiplayItems title="Blank Black T-Shit" image={Front} price={400} />
                     <DiplayItems title="Blank Black T-Shit" image={Front} price={400} />
                     <DiplayItems title="Blank Black T-Shit" image={Front} price={400} />
+                    <div className={styles.EmptyBox}>1</div>
+                    <div className={styles.EmptyBox}>1</div>
+                    <div className={styles.EmptyBox}>1</div>
+                    <div className={styles.EmptyBox}>1</div>
+                    <div className={styles.EmptyBox}>1</div>
+                    <div className={styles.EmptyBox}>1</div>
+                    <div className={styles.EmptyBox}>1</div>
+                    <div className={styles.EmptyBox}>1</div>
+                    <div className={styles.EmptyBox}>1</div>
+                    <div className={styles.EmptyBox}>1</div>
+                    <div className={styles.EmptyBox}>1</div>
+                    <div className={styles.EmptyBox}>1</div>
+                    <div className={styles.EmptyBox}>1</div>
+                    <div className={styles.EmptyBox}>1</div>
+              
                 </div>
             </div>
         </>
@@ -52,8 +67,8 @@ type ItemProps = {
 
 const DiplayItems = ({ title, image, price }: ItemProps) => {
     return (
-        <div className={styles.ItemDisplay}>
-            <img src={image}/>
+        <div className={styles.ItemDisplay} onDrag={(e) => e.preventDefault()}>
+            <img src={image} onDrag={(e) => e.preventDefault()}/>
             <div>{title}</div>
             <div>EGP {price}</div>
         </div>

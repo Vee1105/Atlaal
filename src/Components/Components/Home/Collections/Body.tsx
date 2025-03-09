@@ -1,8 +1,8 @@
 import { lazy, useRef } from "react";
 import styles from "./Body.module.css";
-import WinterCollection from "/WinterCollection.jpg";
 import SummerImage from "/SummerCollection.jpg";
 import OceanOfFahsion from "/OceanOfFashion.jpg";
+import Session1 from "/Session1.mp4";
 const Text = lazy(() => import("../../../Text/Text"));
 const CollectionButton = lazy(() => import("./CollectionButton"));
 const Panel = lazy(() => import("../../Panel/Panel"));
@@ -37,15 +37,16 @@ export default function Body() {
 
     return (
         <div className={styles.Collections}>
-            <Panel image={WinterCollection}>
-                <h1
+            <Panel video={Session1}>
+                <Text
+                    type="title"
                     ref={TitleRef}
-                    style={{ color: "white", opacity: 0, translate: "0 50px" }}
+                    style={{ color: "white", opacity: 0, translate: "0 50px", marginBottom: "20px", zIndex: 2 }}
                 >
-                    Fall Winter 2025 Collection
-                </h1>
+                    Opening Collection 2025
+                </Text>
                 <CollectionButton
-                    DivStyling={{ opacity: 0, translate: "0 50px" }}
+                    DivStyling={{ opacity: 0, translate: "0 50px", zIndex: 2 }}
                     ref={ButtonRef}
                 >
                     Shop Now
@@ -63,14 +64,14 @@ export default function Body() {
                 Direction="right"
                 image={OceanOfFahsion}
             >
-                <Text style={{ lineHeight: "1.2" }} type="title">
+                <Text type="title">
                     Drown Yourself With
                 </Text>
                 <Text
-                    style={{ fontStyle: "italic", fontSize: "1.8rem" }}
+                    style={{ fontStyle: "italic" }}
                     type="subtitle"
                 >
-                    Culture
+                    Culture This is a test for the new Work Sans font integerated in this project.
                 </Text>
                 <CollectionButton>Explore</CollectionButton>
             </SidePanel>
@@ -79,7 +80,7 @@ export default function Body() {
                 Direction="right"
                 images={[Model1, Model2, Model3]}
             >
-                <h1>Look Good Anywhere</h1>
+                <Text type="title">Look Good Anywhere</Text>
             </MultiImagePanel>
         </div>
     );

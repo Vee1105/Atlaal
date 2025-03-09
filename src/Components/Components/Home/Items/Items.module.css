@@ -19,6 +19,9 @@
     position: absolute;
 }
 
+.ButtonNav > a::selection, .ItemDisplay > *::selection {
+    background-color: transparent;
+}
 .Item {
     display: flex;
     width: 100%;
@@ -32,6 +35,13 @@
     display: none;
 }
 
+.EmptyBox {
+    background-color: red;
+    width: 5000px;
+    height: 100px;
+    opacity: 0;
+}
+
 
 .ItemDisplay {
     display: flex;
@@ -40,6 +50,7 @@
     align-items: center;
     scroll-snap-align: center;
     min-width: 30%;
+    position: relative;
     transform: translateX(110%);
 }
 
