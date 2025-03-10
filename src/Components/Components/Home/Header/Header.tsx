@@ -5,19 +5,17 @@ import { useAppSelector } from "../../../../store/hooks";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+const Text = lazy(() => import("../../../Text/Text"));
 
 export default function Header() {
-    const width = 1100;
-    const height = width / 2;
-
-    const SmallWidth = 100;
-    const SmallHeight = SmallWidth / 2;
+    const height = "50vh";
+    const width = "100vh";
 
     const TransistionStyles = {
         width: width,
         height: height,
-        marginTop: "2vh",
-        opacity: 0.8,
+        marginTop: "25vh",
+        scale: 0.6,
     };
 
     const LogoRef = useRef(null);
@@ -28,18 +26,20 @@ export default function Header() {
 
     useGSAP(() => {
         gsap.to(LogoRef.current, {
-            scrollTrigger: {
-                trigger: "body",
-                start: "top -5%",
-                end: "top -5%",
-                toggleActions: "play none reverse none",
-            },
+            // scrollTrigger: {
+            //     trigger: "body",
+            //     start: "top -1%",
+            //     end: "top -1%",
+            //     toggleActions: "play none reverse none",
+            // },
             duration: 0.5,
-            ease: "power2.inOut",
-            width: SmallWidth,
-            height: SmallHeight,
+            ease: "power3.inOut",
+            width: 100,
+            height: 50,
             marginTop: 0,
+            scale: 1,
             opacity: 1,
+            delay: 3
         });
 
         gsap.to(HeaderRef.current, {
@@ -50,7 +50,7 @@ export default function Header() {
                 toggleActions: "play none reverse none",
             },
             duration: 0.25,
-            ease: "power2.inOut",
+            ease: "power3.inOut",
             backgroundColor: "#000",
         });
     });
@@ -66,7 +66,7 @@ export default function Header() {
             >
                 <LeftSide />
             </div>
-            <div className={styles.LogoDiv} style={{zIndex: 1}}>
+            <div className={styles.LogoDiv}>
                 <div ref={LogoRef} style={TransistionStyles}>
                     <Logo />
                 </div>
@@ -95,9 +95,9 @@ export const Logo = () => {
 
     useGSAP(() => {
         gsap.to(Group, {
-            transform: "translate(0px, 0px)",
+            opacity: 0.8,
             duration: 1,
-            delay: 1,
+            delay: 1.5,
             ease: "power3.inOut",
         });
     });
@@ -111,7 +111,7 @@ export const Logo = () => {
                 viewBox="0 0 649.52 315.34"
             >
                 <g
-                    style={{ transform: "translate(0px, 600px)" }}
+                    style={{ opacity: 0 }}
                     className="Group"
                     id="Layer_1-2"
                     data-name="Layer 1"
@@ -157,9 +157,42 @@ const LeftSide = () => {
     );
 };
 
+const News = ({
+    text,
+    style,
+    ref,
+}: {
+    text: string;
+    style?: React.CSSProperties | undefined;
+    ref?: React.RefObject<null>;
+}) => {
+
+    const Styles = {
+        textDecoration: "underline",
+        cursor: "pointer",
+        ...style
+    }
+
+    return (
+        <Text ref={ref} type="news" style={Styles}>
+            {text}
+        </Text>
+    );
+};
+
+const NewsContainer = () => {
+    return (
+        <div className={styles.NewsContainer}>
+            <News  text="Shop The New Opening Collection 2025" />
+            <News text="Opening Sale 50% Off" />
+        </div>
+    )
+}
+
 const RightSide = () => {
     return (
         <div className={styles.RightSide}>
+            <NewsContainer />
             <Button>
                 <Search />
             </Button>

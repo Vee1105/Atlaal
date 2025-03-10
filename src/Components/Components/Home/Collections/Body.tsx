@@ -20,19 +20,22 @@ export default function Body() {
     const TitleRef = useRef(null);
 
     useGSAP(() => {
-        gsap.to(ButtonRef.current, {
-            duration: 1,
-            opacity: 1,
-            translate: "0 0",
-            ease: "power3.inOut",
-        })
 
         gsap.to(TitleRef.current, {
             duration: 1,
             opacity: 1,
             translate: "0 0",
+            delay: 1,
             ease: "power3.inOut",
         })
+        gsap.to(ButtonRef.current, {
+            duration: 1,
+            opacity: 1,
+            translate: "0 0",
+            delay: 1.5,
+            ease: "power3.inOut",
+        })
+
     });
 
     return (
@@ -41,12 +44,16 @@ export default function Body() {
                 <Text
                     type="title"
                     ref={TitleRef}
-                    style={{ color: "white", opacity: 0, translate: "0 50px", marginBottom: "20px", zIndex: 2 }}
+                    style={{ color: "white", opacity: 0, translate: "0 50px", marginBottom: "20px"}}
                 >
                     Opening Collection 2025
                 </Text>
+                <Text type="subtext" style={{width: "600px", textAlign: "start"}}>
+                    We Are pleased to announce our opening with an opening collection that carries our trademark on it.
+                    We Are also celebrating the opening with a 50% off on our entire collection.
+                </Text>
                 <CollectionButton
-                    DivStyling={{ opacity: 0, translate: "0 50px", zIndex: 2 }}
+                    DivStyling={{ opacity: 0, translate: "0 50px" }}
                     ref={ButtonRef}
                 >
                     Shop Now

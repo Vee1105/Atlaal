@@ -3,7 +3,7 @@ import styles from "./Text.module.css";
 import { Colors, getTheme } from '../Themes/Theme';
 
 type TextProps = {
-	type?: "title" | "subtitle" | "body" | "caption";
+	type?: "title" | "subtitle" | "body" | "caption" | "news" | "subtext";
 	children: React.ReactNode;
 	style?: React.CSSProperties | undefined;
 	ref?: React.RefObject<null>;
@@ -35,10 +35,20 @@ export default function Text({ type, children, style, ref }: TextProps) {
 		color: colors?.textColor.caption,
 		...style,
 	}
+	const NewsStyling = {
+		color: colors?.textColor.news,
+		...style,
+	}
+
 	return (
 		<>
 			{type === undefined && (
 				<span ref={ref} style={DefaultStyling} className={styles.text}>
+					{children}
+				</span>
+			)}
+			{type === "subtext" && (
+				<span ref={ref} style={DefaultStyling} className={`${styles.subtext} ${styles.text}`}>
 					{children}
 				</span>
 			)}
@@ -59,6 +69,11 @@ export default function Text({ type, children, style, ref }: TextProps) {
 			)}
 			{type === "caption" && (
 				<span ref={ref} style={CaptionStyling} className={`${styles.caption} ${styles.text}`}>
+					{children}
+				</span>
+			)}
+			{type === "news" && (
+				<span ref={ref} style={NewsStyling} className={`${styles.news} ${styles.text}`}>
 					{children}
 				</span>
 			)}
