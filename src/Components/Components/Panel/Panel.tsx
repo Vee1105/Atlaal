@@ -63,6 +63,7 @@ export default function Panel({ children, image, video }: PanelProps) {
                     alignItems: "center",
                     flexDirection: "column",
                     marginBottom: "70px",
+                    gap: "10px",
                 }}
             >
                 {children}

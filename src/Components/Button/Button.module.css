@@ -8,13 +8,12 @@
     position: relative;
     width: 0%;
     height: 2px;
-    background-color: hsla(210, 5%, 50%, 0);
     transition: 0.5s;
 }
 
 .Button:hover {
     .ButtonHover {
-        background-color: rgb(80, 80, 80);
-        width: 90%;
+        background-color: rgb(255, 255, 255);
+        width: 80%;
     }
 }

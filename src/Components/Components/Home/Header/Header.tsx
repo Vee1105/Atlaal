@@ -26,13 +26,18 @@ export default function Header() {
 
     useGSAP(() => {
         gsap.to(LogoRef.current, {
-            // scrollTrigger: {
-            //     trigger: "body",
-            //     start: "top -1%",
-            //     end: "top -1%",
-            //     toggleActions: "play none reverse none",
-            // },
+            scrollTrigger: {
+                trigger: "body",
+                start: "top -5%",
+                end: "top -5%",
+                toggleActions: "play none reverse none",
+            },
+            opacity: 1,
             duration: 0.5,
+            ease: "power3.inOut",
+        })
+        gsap.to(LogoRef.current, {
+            duration: 1,
             ease: "power3.inOut",
             width: 100,
             height: 50,
@@ -95,12 +100,13 @@ export const Logo = () => {
 
     useGSAP(() => {
         gsap.to(Group, {
-            opacity: 0.8,
+            opacity: 1,
             duration: 1,
             delay: 1.5,
             ease: "power3.inOut",
         });
-    });
+    })
+
 
     return (
         <div>
@@ -111,7 +117,7 @@ export const Logo = () => {
                 viewBox="0 0 649.52 315.34"
             >
                 <g
-                    style={{ opacity: 0 }}
+                    style={{opacity: 0}}
                     className="Group"
                     id="Layer_1-2"
                     data-name="Layer 1"
