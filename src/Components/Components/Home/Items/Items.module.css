@@ -1,10 +1,11 @@
 .Items {
     width: 100%;
-    height: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    gap: 50px;
 }
 
 .ButtonNav {
@@ -24,11 +25,14 @@
 }
 .Item {
     display: flex;
-    width: 100%;
+    align-self: center;
+    height: 550px;
+    width: 80%;
     gap: 5%;
-    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    overflow-y: hidden;
+    overflow-x: scroll;
 }
 
 .Item::-webkit-scrollbar {
@@ -36,7 +40,6 @@
 }
 
 .EmptyBox {
-    background-color: red;
     width: 5000px;
     height: 100px;
     opacity: 0;
@@ -46,15 +49,14 @@
 .ItemDisplay {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     scroll-snap-align: center;
-    min-width: 30%;
+    min-width: 500px;
+    height: 600px;
     position: relative;
-    transform: translateX(110%);
 }
 
 .ItemDisplay > img {
-    width: 90%;
+    width: 500px;
 }
 

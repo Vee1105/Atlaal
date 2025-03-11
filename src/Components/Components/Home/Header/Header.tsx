@@ -26,17 +26,6 @@ export default function Header() {
 
     useGSAP(() => {
         gsap.to(LogoRef.current, {
-            scrollTrigger: {
-                trigger: "body",
-                start: "top -5%",
-                end: "top -5%",
-                toggleActions: "play none reverse none",
-            },
-            opacity: 1,
-            duration: 0.5,
-            ease: "power3.inOut",
-        })
-        gsap.to(LogoRef.current, {
             duration: 1,
             ease: "power3.inOut",
             width: 100,
@@ -189,7 +178,7 @@ const News = ({
 const NewsContainer = () => {
     return (
         <div className={styles.NewsContainer}>
-            <News  text="Shop The New Opening Collection 2025" />
+            <News text="Shop The New Opening Collection 2025" />
             <News text="Opening Sale 50% Off" />
         </div>
     )

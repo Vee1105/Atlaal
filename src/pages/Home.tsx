@@ -8,16 +8,10 @@ import styles from "./Home.module.css"
 export default function HomePage() {
     return (
         <div className={styles.Home}>
-            {/* <ThemeSwitch /> */}
-            {/*  Navbar */}
             <Header />
             <Body />
             <Items />
             <Footer />
-            {/* //Collections
-            //  //Top Sellers
-            //  //Categories
-            //  //Footer */}
         </div>
     );
 }

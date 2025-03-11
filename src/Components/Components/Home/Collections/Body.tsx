@@ -51,8 +51,8 @@ export default function Body() {
                 >
                     Opening Collection 2025
                 </Text>
-                <Text type="subtext" ref={TextRef} style={{width: "600px", textAlign: "start", opacity: 0, translate: "0 50px"}}>
-                    We Are pleased to announce our opening with an opening collection,
+                <Text type="subtext" ref={TextRef} style={{width: "520px", textAlign: "center", opacity: 0, translate: "0 50px"}}>
+                    We Are pleased to announce our opening collection,
                     and We Are celebrating It with a 50% off on the entire collection.
                 </Text>
                 <CollectionButton

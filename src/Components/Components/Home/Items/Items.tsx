@@ -10,7 +10,7 @@ export default function Items() {
     return (
         <>
             <div className={styles.Items}>
-                <Text type="title">House's Unisex Collection</Text>
+                <Text type="title">Latest Items</Text>
                 <div className={styles.ButtonNav}>
                     <a 
                         onClick={() => {
@@ -31,27 +31,11 @@ export default function Items() {
                     </a>
                 </div>
                 <div ref={SliderRef} className={styles.Item} >
-                    <DiplayItems title="Blank Black T-Shit" image={Front} price={400} />
-                    <DiplayItems title="Blank Black T-Shit" image={Front} price={400} />
-                    <DiplayItems title="Blank Black T-Shit" image={Front} price={400} />
-                    <DiplayItems title="Blank Black T-Shit" image={Front} price={400} />
-                    <DiplayItems title="Blank Black T-Shit" image={Front} price={400} />
-                    <DiplayItems title="Blank Black T-Shit" image={Front} price={400} />
-                    <div className={styles.EmptyBox}>1</div>
-                    <div className={styles.EmptyBox}>1</div>
-                    <div className={styles.EmptyBox}>1</div>
-                    <div className={styles.EmptyBox}>1</div>
-                    <div className={styles.EmptyBox}>1</div>
-                    <div className={styles.EmptyBox}>1</div>
-                    <div className={styles.EmptyBox}>1</div>
-                    <div className={styles.EmptyBox}>1</div>
-                    <div className={styles.EmptyBox}>1</div>
-                    <div className={styles.EmptyBox}>1</div>
-                    <div className={styles.EmptyBox}>1</div>
-                    <div className={styles.EmptyBox}>1</div>
-                    <div className={styles.EmptyBox}>1</div>
-                    <div className={styles.EmptyBox}>1</div>
-              
+                    <BlankSpace />
+                        <DiplayItems title="Atlaal's T-Shit" image={Front} price={600} />
+                        <DiplayItems title="Blank Black T-Shit" image={Front} price={600} />
+                        <DiplayItems title="Blank Black T-Shit" image={Front} price={600} />
+                    <BlankSpace />
                 </div>
             </div>
         </>
@@ -65,9 +49,22 @@ type ItemProps = {
     price: number;
 };
 
+const BlankSpace = () => {
+    return (
+        <>
+            <div style={{opacity: 0}}>1</div>
+            <div style={{opacity: 0}}>1</div>
+            <div style={{opacity: 0}}>1</div>
+            <div style={{opacity: 0}}>1</div>
+            <div style={{opacity: 0}}>1</div>
+            <div style={{opacity: 0}}>1</div>
+        </>
+    )
+}
+
 const DiplayItems = ({ title, image, price }: ItemProps) => {
     return (
-        <div className={styles.ItemDisplay} onDrag={(e) => e.preventDefault()}>
+        <div id='Item' className={styles.ItemDisplay} onDrag={(e) => e.preventDefault()}>
             <img src={image} onDrag={(e) => e.preventDefault()}/>
             <div>{title}</div>
             <div>EGP {price}</div>
