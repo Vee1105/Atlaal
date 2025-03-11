@@ -1,10 +1,10 @@
 import { lazy, useRef } from "react";
 const Button = lazy(() => import("../../../Button/Button"));
 import styles from "./Header.module.css";
-import { useAppSelector } from "../../../../store/hooks";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { Colors, getTheme } from "../../../Themes/Theme";
 const Text = lazy(() => import("../../../Text/Text"));
 
 export default function Header() {
@@ -19,10 +19,16 @@ export default function Header() {
     };
 
     const LogoRef = useRef(null);
-
     const HeaderRef = useRef(null);
+    const HeaderText = document.getElementsByClassName("HeaderText")
 
     gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+    const theme = getTheme();
+    const colors = Colors[`${theme}`];
+    
+    const Letters = document.getElementsByClassName("Letter");
+    const Icons = document.getElementsByClassName("Icon");
 
     useGSAP(() => {
         gsap.to(LogoRef.current, {
@@ -33,19 +39,43 @@ export default function Header() {
             marginTop: 0,
             scale: 1,
             opacity: 1,
-            delay: 3
+            delay: 3,
+        });
+
+        gsap.to([Letters, Icons], {
+            scrollTrigger: {
+                trigger: "body",
+                start: "top -80%",
+                end: "top -80%",
+                toggleActions: "play none reverse none",
+            },
+            fill: colors?.textColor.default,
+            duration: 0.1,
+            ease: "power3.inOut",
+        });
+
+        gsap.to(HeaderText, {
+            scrollTrigger:{
+                trigger: "body",
+                start: "top -80%",
+                end: "top -80%",
+                toggleActions: "play none reverse none"
+            },
+            color: colors?.textColor.default,
+            duration: 0.1,
+            ease: "power3.inOut",
         });
 
         gsap.to(HeaderRef.current, {
             scrollTrigger: {
                 trigger: "body",
-                start: "top -5%",
-                end: "top -5%",
+                start: "top -80%",
+                end: "top -80%",
                 toggleActions: "play none reverse none",
             },
             duration: 0.25,
             ease: "power3.inOut",
-            backgroundColor: "#000",
+            backgroundColor: colors.backgroundColor,
         });
     });
 
@@ -79,10 +109,9 @@ export default function Header() {
 }
 
 export const Logo = () => {
-    const theme = useAppSelector((state) => state.theme.mode);
     const styles = {
         transition: "fill 0.5s ease-in-out",
-        fill: theme === "Light" ? "#000" : "#fff",
+        fill: "#fff",
     };
 
     const Group = document.getElementsByClassName("Group");
@@ -94,8 +123,7 @@ export const Logo = () => {
             delay: 1.5,
             ease: "power3.inOut",
         });
-    })
-
+    });
 
     return (
         <div>
@@ -106,7 +134,7 @@ export const Logo = () => {
                 viewBox="0 0 649.52 315.34"
             >
                 <g
-                    style={{opacity: 0}}
+                    style={{ opacity: 0 }}
                     className="Group"
                     id="Layer_1-2"
                     data-name="Layer 1"
@@ -142,12 +170,30 @@ export const Logo = () => {
     );
 };
 
-const LeftSide = () => {
+const LeftSide = ({ ref }: { ref?: React.RefObject<null> }) => {
     return (
         <div className={styles.LeftSide}>
-            <Button>Categories</Button>
+            <Button>
+                <Text
+                    AffectedByTheme={false}
+                    ref={ref}
+                    className="HeaderText"
+                    style={{ fontSize: "0.9rem" }}
+                >
+                    Categories
+                </Text>
+            </Button>
             {/* <Button>Design It</Button> */}
-            <Button>Contanct Us</Button>
+            <Button>
+                <Text
+                    AffectedByTheme={false}
+                    ref={ref}
+                    className="HeaderText"
+                    style={{ fontSize: "0.9rem" }}
+                >
+                    Contact Us
+                </Text>
+            </Button>
         </div>
     );
 };
@@ -161,33 +207,32 @@ const News = ({
     style?: React.CSSProperties | undefined;
     ref?: React.RefObject<null>;
 }) => {
-
     const Styles = {
         textDecoration: "underline",
         cursor: "pointer",
-        ...style
-    }
+        ...style,
+    };
 
     return (
-        <Text ref={ref} type="news" style={Styles}>
+        <Text AffectedByTheme={false} className="HeaderText" ref={ref} type="news" style={Styles}>
             {text}
         </Text>
     );
 };
 
-const NewsContainer = () => {
+const NewsContainer = ({ ref }: { ref?: React.RefObject<null> }) => {
     return (
         <div className={styles.NewsContainer}>
-            <News text="Shop The New Opening Collection 2025" />
-            <News text="Opening Sale 50% Off" />
+            <News ref={ref} text="Shop The New Opening Collection 2025" />
+            <News ref={ref} text="Opening Sale 50% Off" />
         </div>
-    )
-}
+    );
+};
 
-const RightSide = () => {
+const RightSide = ({ ref }: { ref?: React.RefObject<null> }) => {
     return (
         <div className={styles.RightSide}>
-            <NewsContainer />
+            <NewsContainer ref={ref} />
             <Button>
                 <Search />
             </Button>
@@ -202,12 +247,13 @@ const Search = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="22"
+            height="22"
             viewBox="0 0 24 24"
         >
             <path
-                fill="currentColor"
+                className="Icon"
+                fill="white"
                 d="m18.031 16.617l4.283 4.282l-1.415 1.415l-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9s9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617m-2.006-.742A6.98 6.98 0 0 0 18 11c0-3.867-3.133-7-7-7s-7 3.133-7 7s3.133 7 7 7a6.98 6.98 0 0 0 4.875-1.975z"
             />
         </svg>
@@ -218,12 +264,13 @@ const Cart = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="22"
+            height="22"
             viewBox="0 0 24 24"
         >
             <path
-                fill="currentColor"
+                className="Icon"
+                fill="white"
                 d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1m-9-1a2 2 0 0 1 4 0v1h-4Zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2Z"
             />
         </svg>

@@ -47,11 +47,12 @@ export default function Body() {
                 <Text
                     type="title"
                     ref={TitleRef}
-                    style={{ color: "white", opacity: 0, translate: "0 50px"}}
+                    style={{ opacity: 0, translate: "0 50px"}}
+                    AffectedByTheme={false}
                 >
                     Opening Collection 2025
                 </Text>
-                <Text type="subtext" ref={TextRef} style={{width: "520px", textAlign: "center", opacity: 0, translate: "0 50px"}}>
+                <Text AffectedByTheme={false} type="subtext" ref={TextRef} style={{width: "520px", textAlign: "center", opacity: 0, translate: "0 50px", marginBottom: "5px"}}>
                     We Are pleased to announce our opening collection,
                     and We Are celebrating It with a 50% off on the entire collection.
                 </Text>

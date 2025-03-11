@@ -26,11 +26,13 @@
 .LeftSide {
     display: flex;
     margin-top: 10px;
+    padding-left: 100px;
 }
 
 .RightSide {
     display: flex;
     margin-top: 10px;
+    padding-right: 100px;
 }
 
 .NewsContainer {
