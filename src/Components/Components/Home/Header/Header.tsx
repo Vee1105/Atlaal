@@ -20,13 +20,13 @@ export default function Header() {
 
     const LogoRef = useRef(null);
     const HeaderRef = useRef(null);
-    const HeaderText = document.getElementsByClassName("HeaderText")
+    const HeaderText = document.getElementsByClassName("HeaderText");
 
     gsap.registerPlugin(useGSAP, ScrollTrigger);
 
     const theme = getTheme();
     const colors = Colors[`${theme}`];
-    
+
     const Letters = document.getElementsByClassName("Letter");
     const Icons = document.getElementsByClassName("Icon");
 
@@ -55,11 +55,11 @@ export default function Header() {
         });
 
         gsap.to(HeaderText, {
-            scrollTrigger:{
+            scrollTrigger: {
                 trigger: "body",
                 start: "top -80%",
                 end: "top -80%",
-                toggleActions: "play none reverse none"
+                toggleActions: "play none reverse none",
             },
             color: colors?.textColor.default,
             duration: 0.1,
@@ -81,29 +81,14 @@ export default function Header() {
 
     return (
         <div ref={HeaderRef} className={styles.Header}>
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    paddingLeft: "20px",
-                }}
-            >
-                <LeftSide />
-            </div>
+            <LeftSide />
             <div className={styles.LogoDiv}>
                 <div ref={LogoRef} style={TransistionStyles}>
                     <Logo />
                 </div>
             </div>
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    paddingRight: "20px",
-                }}
-            >
-                <RightSide />
-            </div>
+
+            <RightSide />
         </div>
     );
 }
@@ -177,23 +162,25 @@ const LeftSide = ({ ref }: { ref?: React.RefObject<null> }) => {
                 <Text
                     AffectedByTheme={false}
                     ref={ref}
-                    className="HeaderText"
+                    className={`HeaderText ${styles.CategoriesText}`}
                     style={{ fontSize: "0.9rem" }}
                 >
                     Categories
                 </Text>
             </Button>
             {/* <Button>Design It</Button> */}
-            <Button>
-                <Text
-                    AffectedByTheme={false}
-                    ref={ref}
-                    className="HeaderText"
-                    style={{ fontSize: "0.9rem" }}
-                >
-                    Contact Us
-                </Text>
-            </Button>
+            <div className={styles.ContactUs}>
+                <Button>
+                    <Text
+                        AffectedByTheme={false}
+                        ref={ref}
+                        className="HeaderText"
+                        style={{ fontSize: "0.9rem" }}
+                    >
+                        Contact Us
+                    </Text>
+                </Button>
+            </div>
         </div>
     );
 };
@@ -214,7 +201,13 @@ const News = ({
     };
 
     return (
-        <Text AffectedByTheme={false} className="HeaderText" ref={ref} type="news" style={Styles}>
+        <Text
+            AffectedByTheme={false}
+            className="HeaderText"
+            ref={ref}
+            type="news"
+            style={Styles}
+        >
             {text}
         </Text>
     );
@@ -238,6 +231,20 @@ const RightSide = ({ ref }: { ref?: React.RefObject<null> }) => {
             </Button>
             <Button>
                 <Cart />
+            </Button>
+            <Button>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 256 256"
+                    className={styles.CategoriesIcon}
+                >
+                    <path
+                        fill="currentColor"
+                        d="M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16"
+                    />
+                </svg>
             </Button>
         </div>
     );

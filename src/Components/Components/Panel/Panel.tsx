@@ -13,7 +13,18 @@ export default function Panel({ children, image, video }: PanelProps) {
 
     useGSAP(() => {
         gsap.to(VideoRef.current, {
-            height: "100%",
+            scrollTrigger: {
+                trigger: "body",
+                start: "top -40%",
+                end: "top -20%",
+                toggleActions: "play none reverse none",
+            },
+            height: "60%",
+            duration: 0.4,
+            ease: "power3.inOut",
+        })
+        gsap.from(VideoRef.current, {
+            height: "150%",
             duration: 1,
             ease: "power3.inOut",
         });
@@ -35,7 +46,7 @@ export default function Panel({ children, image, video }: PanelProps) {
                     src={video}
                     typeof="video/mp4"
                     width={"100%"}
-                    height={"150%"}
+                    height={"100%"}
                     ref={VideoRef}
                     autoPlay
                     loop

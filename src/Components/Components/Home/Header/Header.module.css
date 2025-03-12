@@ -1,6 +1,5 @@
 .Header {
-    width: 100%;
-    height: 60px;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     position: fixed;
@@ -9,10 +8,9 @@
     padding: 10px 0;
 }
 
-.Header > * {
-    width: 33.33%;
+.CategoriesIcon {
+    display: none;
 }
-
 .LogoDiv {
     padding-top: 10px;
     width: 100%;
@@ -20,19 +18,23 @@
     display: flex;
     justify-content: center;
     z-index: -1;
+    transition: 0.5s;
+
     /* background-color: red;   */
 }
 
 .LeftSide {
     display: flex;
     margin-top: 10px;
-    padding-left: 100px;
+    padding-left: 120px;
+    width: 40%;
 }
 
 .RightSide {
     display: flex;
     margin-top: 10px;
-    padding-right: 100px;
+    padding-right: 120px;
+    width: 40%;
 }
 
 .NewsContainer {
@@ -41,6 +43,53 @@
     align-items: self-start;
     margin-right: auto;
     margin-top: 5px;
-    height: 1.5rem;
     overflow: hidden;
+    text-wrap: wrap;
+    text-align: start;
+    
+    @media screen and (max-width: 900px) {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .Header {
+        /* background-color: blue ; */
+        width: 100vw;
+        height: 70px;
+        align-self: center;
+    }
+    .LeftSide {
+        width: 40%;
+        padding-left: 2%;
+        /* background-color: red; */
+    }
+    .RightSide {
+        width: 40%;
+        padding-right: 2%;
+        /* background-color: black; */
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .LogoDiv {
+        justify-content: flex-start;
+        margin-left: 20px;
+    }
+    .CategoriesText {
+        display: none;
+    }
+    .CategoriesIcon {
+        display: block;
+    }
+    .ContactUs {
+        display: none;
+    }
+    .RightSide {
+        position: absolute;
+        width: 100%;
+        justify-content: flex-end;
+    }
 }
