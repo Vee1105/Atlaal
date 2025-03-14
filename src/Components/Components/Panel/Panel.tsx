@@ -22,7 +22,8 @@ export default function Panel({ children, image, video }: PanelProps) {
             height: "60%",
             duration: 0.4,
             ease: "power3.inOut",
-        })
+        });
+
         gsap.from(VideoRef.current, {
             height: "150%",
             duration: 1,

@@ -4,6 +4,7 @@ import Session1 from "/Session1.mp4";
 const Text = lazy(() => import("../../../Text/Text"));
 const CollectionButton = lazy(() => import("./CollectionButton"));
 const Panel = lazy(() => import("../../Panel/Panel"));
+const Items = lazy(() => import("../Items/Items"));
 // const SidePanel = lazy(() => import("../../Panel/SidePanel"));
 // const MultiImagePanel = lazy(() => import("../../Panel/MultiImagePanel"));
 
@@ -40,15 +41,16 @@ export default function Body() {
     });
 
     return (
-        <div className={styles.Collections}>
+        <div className={styles.Body}>
             <Panel video={Session1}>
                 <Text
                     type="title"
                     ref={TitleRef}
-                    style={{ opacity: 0, translate: "0 50px" }}
+                    style={{ opacity: 0, translate: "0 50px", fontWeight: 500 }}
                     AffectedByTheme={false}
                 >
-                    Opening Collection 2025
+                    Opening
+                    2025
                 </Text>
                 <Text
                     AffectedByTheme={false}
@@ -72,6 +74,7 @@ export default function Body() {
                     Shop Now
                 </CollectionButton>
             </Panel>
+            <Items />
         </div>
     );
 }

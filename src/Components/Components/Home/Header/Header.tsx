@@ -7,15 +7,22 @@ import { ScrollTrigger } from "gsap/all";
 import { Colors, getTheme } from "../../../Themes/Theme";
 const Text = lazy(() => import("../../../Text/Text"));
 
+const MobileDevice = () => {
+    const width = window.innerWidth;
+    if (width <= 500) return true;
+    else return false;
+};
+
 export default function Header() {
-    const height = "50vh";
     const width = "100vh";
+    const height = "50vh";
 
     const TransistionStyles = {
         width: width,
         height: height,
         marginTop: "25vh",
         scale: 0.6,
+        paddingTop: MobileDevice() ? "10px" : "0px",
     };
 
     const LogoRef = useRef(null);
@@ -34,12 +41,13 @@ export default function Header() {
         gsap.to(LogoRef.current, {
             duration: 1,
             ease: "power3.inOut",
-            width: 100,
-            height: 50,
-            marginTop: 0,
+            width: MobileDevice() ? "100px" : "8rem",
+            height: MobileDevice() ? "50px" : "4rem",
+            marginTop: MobileDevice() ? "5px" : "10px",
+            marginLeft: MobileDevice() ? "20px" : 0,
             scale: 1,
             opacity: 1,
-            delay: 3,
+            delay: 4,
         });
 
         gsap.to([Letters, Icons], {
@@ -50,7 +58,7 @@ export default function Header() {
                 toggleActions: "play none reverse none",
             },
             fill: colors?.textColor.default,
-            duration: 0.1,
+            duration: 0.2,
             ease: "power3.inOut",
         });
 
@@ -73,29 +81,37 @@ export default function Header() {
                 end: "top -80%",
                 toggleActions: "play none reverse none",
             },
-            duration: 0.25,
+            duration: 0.1,
             ease: "power3.inOut",
             backgroundColor: colors.backgroundColor,
         });
     });
 
     return (
-        <div ref={HeaderRef} className={styles.Header}>
-            <LeftSide />
-            <div className={styles.LogoDiv}>
-                <div ref={LogoRef} style={TransistionStyles}>
-                    <Logo />
+        <div
+            style={{
+                height: MobileDevice() ? "auto" : "4rem",
+                padding: MobileDevice() ? "0px 0px" : "5px 0px",
+            }}
+            ref={HeaderRef}
+            className={styles.HeaderContainer}
+        >
+            <div className={styles.Header}>
+                <LeftSide />
+                <div className={styles.LogoDiv}>
+                    <div ref={LogoRef} style={TransistionStyles}>
+                        <Logo />
+                    </div>
                 </div>
-            </div>
 
-            <RightSide />
+                <RightSide />
+            </div>
         </div>
     );
 }
 
 export const Logo = () => {
     const styles = {
-        transition: "fill 0.5s ease-in-out",
         fill: "#fff",
     };
 
@@ -157,13 +173,15 @@ export const Logo = () => {
 
 const LeftSide = ({ ref }: { ref?: React.RefObject<null> }) => {
     return (
-        <div className={styles.LeftSide}>
+        <div
+            style={{ marginTop: MobileDevice() ? "0px" : "0px" }}
+            className={styles.LeftSide}
+        >
             <Button>
                 <Text
                     AffectedByTheme={false}
                     ref={ref}
                     className={`HeaderText ${styles.CategoriesText}`}
-                    style={{ fontSize: "0.9rem" }}
                 >
                     Categories
                 </Text>
@@ -174,8 +192,7 @@ const LeftSide = ({ ref }: { ref?: React.RefObject<null> }) => {
                     <Text
                         AffectedByTheme={false}
                         ref={ref}
-                        className="HeaderText"
-                        style={{ fontSize: "0.9rem" }}
+                        className={`HeaderText ${styles.ContactUsText}`}
                     >
                         Contact Us
                     </Text>
@@ -185,47 +202,9 @@ const LeftSide = ({ ref }: { ref?: React.RefObject<null> }) => {
     );
 };
 
-const News = ({
-    text,
-    style,
-    ref,
-}: {
-    text: string;
-    style?: React.CSSProperties | undefined;
-    ref?: React.RefObject<null>;
-}) => {
-    const Styles = {
-        textDecoration: "underline",
-        cursor: "pointer",
-        ...style,
-    };
-
-    return (
-        <Text
-            AffectedByTheme={false}
-            className="HeaderText"
-            ref={ref}
-            type="news"
-            style={Styles}
-        >
-            {text}
-        </Text>
-    );
-};
-
-const NewsContainer = ({ ref }: { ref?: React.RefObject<null> }) => {
-    return (
-        <div className={styles.NewsContainer}>
-            <News ref={ref} text="Shop The New Opening Collection 2025" />
-            <News ref={ref} text="Opening Sale 50% Off" />
-        </div>
-    );
-};
-
-const RightSide = ({ ref }: { ref?: React.RefObject<null> }) => {
+const RightSide = () => {
     return (
         <div className={styles.RightSide}>
-            <NewsContainer ref={ref} />
             <Button>
                 <Search />
             </Button>
@@ -241,7 +220,8 @@ const RightSide = ({ ref }: { ref?: React.RefObject<null> }) => {
                     className={styles.CategoriesIcon}
                 >
                     <path
-                        fill="currentColor"
+                        fill="white"
+                        className="Icon"
                         d="M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16"
                     />
                 </svg>

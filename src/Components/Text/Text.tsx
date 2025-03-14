@@ -58,7 +58,7 @@ export default function Text({
                 <span
                     ref={ref}
                     style={DefaultStyling}
-                    className={`${styles.text} ${className}`}
+                    className={`${className}`}
                 >
                     {children}
                 </span>
