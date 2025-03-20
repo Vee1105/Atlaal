@@ -13,6 +13,10 @@ interface TextProps
     ref?: React.RefObject<null>;
     AffectedByTheme?: boolean;
     className?: string | undefined;
+    HasUnderline?: boolean;
+    UnderlineID?: string;
+    TextID?: string;
+    UnderlineStyle?: React.CSSProperties;
 }
 
 export default function Text({
@@ -22,6 +26,10 @@ export default function Text({
     ref,
     className,
     AffectedByTheme = true,
+    HasUnderline = false,
+    UnderlineID,
+    TextID,
+    UnderlineStyle,
 }: TextProps) {
     const theme = getTheme();
 
@@ -29,6 +37,8 @@ export default function Text({
 
     const DefaultStyling = {
         color: AffectedByTheme ? colors?.textColor.default : "#fff",
+        lineHeight: "1",
+        overflow: "hidden",
         ...style,
     };
     const TitleStyling = {
@@ -59,8 +69,12 @@ export default function Text({
                     ref={ref}
                     style={DefaultStyling}
                     className={`${className}`}
+                    id={TextID}
                 >
                     {children}
+                    {HasUnderline && (
+                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                    )}
                 </span>
             )}
             {type === "subtext" && (
@@ -70,6 +84,9 @@ export default function Text({
                     className={`${styles.subtext} ${styles.text} ${className}`}
                 >
                     {children}
+                    {HasUnderline && (
+                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                    )}
                 </span>
             )}
             {type === "title" && (
@@ -79,6 +96,9 @@ export default function Text({
                     className={`${styles.title} ${styles.text} ${className}`}
                 >
                     {children}
+                    {HasUnderline && (
+                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                    )}
                 </span>
             )}
             {type === "subtitle" && (
@@ -88,6 +108,9 @@ export default function Text({
                     className={`${styles.subtitle} ${styles.text} ${className}`}
                 >
                     {children}
+                    {HasUnderline && (
+                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                    )}
                 </span>
             )}
             {type === "body" && (
@@ -97,6 +120,9 @@ export default function Text({
                     className={`${styles.body} ${styles.text} ${className}`}
                 >
                     {children}
+                    {HasUnderline && (
+                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                    )}
                 </span>
             )}
             {type === "caption" && (
@@ -106,6 +132,9 @@ export default function Text({
                     className={`${styles.caption} ${styles.text} ${className}`}
                 >
                     {children}
+                    {HasUnderline && (
+                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                    )}
                 </span>
             )}
             {type === "news" && (
@@ -115,8 +144,24 @@ export default function Text({
                     className={`${styles.news} ${styles.text} ${className}`}
                 >
                     {children}
+                    {HasUnderline && (
+                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                    )}
                 </span>
             )}
         </>
     );
 }
+
+const UnderLine = ({ UnderlineID, style }: { UnderlineID?: string, style?: React.CSSProperties }) => {
+    return (
+        <div
+            id={UnderlineID}
+            style={{
+                height: 2,
+                backgroundColor: "black",
+                ...style,
+            }}
+        />
+    );
+};
