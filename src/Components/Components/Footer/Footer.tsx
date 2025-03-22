@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import styles from "./Footer.module.css";
 import { Colors } from "../../Themes/Theme";
+import Button from "../../Button/Button";
 const Text = lazy(() => import("../../Text/Text"));
 
 const Footer = () => {
@@ -14,17 +15,76 @@ const Footer = () => {
                             style={{
                                 color: colors.textColor.news,
                                 textAlign: "center",
-                                fontWeight: "500"
+                                fontWeight: "400",
                             }}
                             type="subtext"
                         >
                             Atlaal Services
                         </Text>
-
+                        <Button UnderlineButton color="White">
+                            Gifting
+                        </Button>
+                        <Button UnderlineButton color="White">
+                            Especially For You
+                        </Button>
+                        <Button UnderlineButton color="White">
+                            Contact Us
+                        </Button>
+                        <Button UnderlineButton color="White">
+                            My Order
+                        </Button>
                     </div>
-                    <div className={styles.ReachUs}></div>
-                    <div className={styles.Newsletter}></div>
-                    <div className={styles.About}></div>
+                    <div className={styles.About}>
+                        <Text
+                            style={{
+                                color: colors.textColor.news,
+                                textAlign: "center",
+                                fontWeight: "400",
+                            }}
+                            type="subtext"
+                        >
+                            About
+                        </Text>
+                        <Button UnderlineButton color="White">
+                            About Atlaal
+                        </Button>
+                        <Button UnderlineButton color="White">
+                            Our Story
+                        </Button>
+                        <Button UnderlineButton color="White">
+                            Work With Us
+                        </Button>
+                        <Button UnderlineButton color="White">
+                            Culture
+                        </Button>
+                        <Button UnderlineButton color="White">
+                            What's To Come?
+                        </Button>
+                    </div>
+                    <div className={styles.ReachUs}>
+                        <Text
+                            style={{
+                                color: colors.textColor.news,
+                                textAlign: "center",
+                                fontWeight: "400",
+                            }}
+                            type="subtext"
+                        >
+                            Connect
+                        </Text>
+                    </div>
+                    <div className={styles.Newsletter}>
+                        <Text
+                            style={{
+                                color: colors.textColor.news,
+                                textAlign: "center",
+                                fontWeight: "400",
+                            }}
+                            type="subtext"
+                        >
+                            News
+                        </Text>
+                    </div>
                 </div>
             </div>
         </div>

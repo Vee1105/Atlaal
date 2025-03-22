@@ -14,6 +14,7 @@ interface TextProps
     AffectedByTheme?: boolean;
     className?: string | undefined;
     HasUnderline?: boolean;
+    HasUnderline2?: boolean;
     UnderlineID?: string;
     TextID?: string;
     UnderlineStyle?: React.CSSProperties;
@@ -27,6 +28,7 @@ export default function Text({
     className,
     AffectedByTheme = true,
     HasUnderline = false,
+    HasUnderline2 = false,
     UnderlineID,
     TextID,
     UnderlineStyle,
@@ -73,7 +75,10 @@ export default function Text({
                 >
                     {children}
                     {HasUnderline && (
-                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                        <UnderLine
+                            UnderlineID={UnderlineID}
+                            style={UnderlineStyle}
+                        />
                     )}
                 </span>
             )}
@@ -85,7 +90,10 @@ export default function Text({
                 >
                     {children}
                     {HasUnderline && (
-                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                        <UnderLine
+                            UnderlineID={UnderlineID}
+                            style={UnderlineStyle}
+                        />
                     )}
                 </span>
             )}
@@ -97,7 +105,10 @@ export default function Text({
                 >
                     {children}
                     {HasUnderline && (
-                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                        <UnderLine
+                            UnderlineID={UnderlineID}
+                            style={UnderlineStyle}
+                        />
                     )}
                 </span>
             )}
@@ -109,7 +120,10 @@ export default function Text({
                 >
                     {children}
                     {HasUnderline && (
-                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                        <UnderLine
+                            UnderlineID={UnderlineID}
+                            style={UnderlineStyle}
+                        />
                     )}
                 </span>
             )}
@@ -121,7 +135,10 @@ export default function Text({
                 >
                     {children}
                     {HasUnderline && (
-                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                        <UnderLine
+                            UnderlineID={UnderlineID}
+                            style={UnderlineStyle}
+                        />
                     )}
                 </span>
             )}
@@ -133,7 +150,10 @@ export default function Text({
                 >
                     {children}
                     {HasUnderline && (
-                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                        <UnderLine
+                            UnderlineID={UnderlineID}
+                            style={UnderlineStyle}
+                        />
                     )}
                 </span>
             )}
@@ -145,7 +165,10 @@ export default function Text({
                 >
                     {children}
                     {HasUnderline && (
-                        <UnderLine UnderlineID={UnderlineID} style={UnderlineStyle} />
+                        <UnderLine
+                            UnderlineID={UnderlineID}
+                            style={UnderlineStyle}
+                        />
                     )}
                 </span>
             )}
@@ -153,7 +176,13 @@ export default function Text({
     );
 }
 
-const UnderLine = ({ UnderlineID, style }: { UnderlineID?: string, style?: React.CSSProperties }) => {
+const UnderLine = ({
+    UnderlineID,
+    style,
+}: {
+    UnderlineID?: string;
+    style?: React.CSSProperties;
+}) => {
     return (
         <div
             id={UnderlineID}

@@ -184,13 +184,9 @@
 
 a {
   font-weight: 500;
-  color: hsl(0, 100%, 70%);
   text-decoration: inherit;
   transition: 0.5s;
   cursor: pointer;
-}
-a:hover {
-  color: hsl(0, 70%, 40%);
 }
 
 span {

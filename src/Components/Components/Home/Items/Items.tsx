@@ -1,30 +1,54 @@
 import { lazy, useRef, useState } from "react";
 const Text = lazy(() => import("../../../Text/Text"));
 import styles from "./Items.module.css";
-import Front from "/Front.png";
+import FrontShirt from "/Front.png"
+import Front from "/Front.jpeg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 export default function Items() {
     const SliderRef = useRef<HTMLDivElement>(null);
+    const ItemsID = document.getElementById("ItemsUnderline");
+
+    const [itemsHovered, setItemsHovered] = useState(false);
+
+    useGSAP(() => {
+        gsap.to(ItemsID, {
+            duration: 1,
+            width: itemsHovered ? "100%" : "20%",
+            translate: itemsHovered ? "101% 0" : "-101% 0",
+            ease: "power3.inOut",
+        });
+    }, [itemsHovered]);
 
     return (
         <>
             <div className={styles.Items}>
                 <div className={styles.ContentContainer}>
-                    <Text
-                        HasUnderline
+                    <div
                         style={{
-                            fontSize: "2.2rem",
-                            fontWeight: "300",
-                            height: "10%",
                             cursor: "pointer",
                             lineHeight: "1.3",
+                            margin: "1%",
+                            overflow: "hidden",
                         }}
-                        id="ItemsTitle"
+                        onMouseEnter={() => setItemsHovered(true)}
+                        onMouseLeave={() => setItemsHovered(false)}
                     >
-                        Latest Items
-                    </Text>
+                        <Text
+                            HasUnderline={true}
+                            HasUnderline2={true}
+                            UnderlineID="ItemsUnderline"
+                            style={{
+                                fontSize: "2.2rem",
+                                fontWeight: "300",
+                                lineHeight: "1.3",
+                            }}
+                            id="ItemsTitle"
+                        >
+                            Latest Items
+                        </Text>
+                    </div>
                     {/* WHEN THERE IS MORE THAN ONE ITEM ENABLE THIS. OTHERWISE LEAVE IT OFF */}
                     {/* <div className={styles.ButtonNav}>
                     <a 
@@ -68,6 +92,7 @@ type ItemProps = {
     price: number;
     UnderlineID?: string;
     TextID?: string;
+    ImageOnHover?: string;
 };
 
 const BlankSpace = () => {
@@ -86,17 +111,14 @@ const BlankSpace = () => {
 const DiplayItems = ({
     title,
     image,
-    price,
     UnderlineID,
-    TextID,
 }: ItemProps) => {
     const [Hovered, setHovered] = useState(false);
     const TheUnderlineID = document.querySelectorAll(`#${UnderlineID}`);
-    const ItemsTitle = document.getElementById(`ItemsTitle`);
     const DivRef = useRef(null);
-
+    const ImageRef = useRef(null)
     useGSAP(() => {
-        gsap.to([TheUnderlineID, ItemsTitle], {
+        gsap.to(TheUnderlineID, {
             duration: 1,
             width: Hovered ? "100%" : "20%",
             translate: Hovered ? "101% 0" : "-100% 0",
@@ -113,6 +135,7 @@ const DiplayItems = ({
         <div ref={DivRef} className={styles.ItemDisplay}>
             <img
                 className={styles.ItemImage}
+                ref={ImageRef}
                 src={image}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
@@ -127,7 +150,6 @@ const DiplayItems = ({
                     UnderlineStyle={{ width: "20%", translate: "-100% 0" }}
                     HasUnderline={true}
                     className={"Title"}
-                    TextID={TextID}
                     style={{ fontWeight: "500", fontSize: "1.3rem" }}
                 >
                     {title}
