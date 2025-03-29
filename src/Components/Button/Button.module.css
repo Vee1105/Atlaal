@@ -18,13 +18,18 @@
     }
 }
 
+@media screen and (max-width: 500px) {
+    .ButtonHover {
+        display: none;
+    }
+}
+
 .ButtonUnderline {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     overflow: hidden;
 }
-
 
 .ButtonUnderlineStyling {
     display: flex;

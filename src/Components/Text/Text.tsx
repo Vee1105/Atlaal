@@ -14,7 +14,6 @@ interface TextProps
     AffectedByTheme?: boolean;
     className?: string | undefined;
     HasUnderline?: boolean;
-    HasUnderline2?: boolean;
     UnderlineID?: string;
     TextID?: string;
     UnderlineStyle?: React.CSSProperties;
@@ -28,7 +27,6 @@ export default function Text({
     className,
     AffectedByTheme = true,
     HasUnderline = false,
-    HasUnderline2 = false,
     UnderlineID,
     TextID,
     UnderlineStyle,

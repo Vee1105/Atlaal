@@ -1,8 +1,8 @@
 import { lazy } from "react";
 import styles from "./Footer.module.css";
 import { Colors } from "../../Themes/Theme";
-import Button from "../../Button/Button";
 const Text = lazy(() => import("../../Text/Text"));
+const Button = lazy(() => import("../../Button/Button"));
 
 const Footer = () => {
     const colors = Colors.Dark;
@@ -25,7 +25,7 @@ const Footer = () => {
                             Gifting
                         </Button>
                         <Button UnderlineButton color="White">
-                            Especially For You
+                            Custom Made
                         </Button>
                         <Button UnderlineButton color="White">
                             Contact Us
@@ -58,7 +58,7 @@ const Footer = () => {
                             Culture
                         </Button>
                         <Button UnderlineButton color="White">
-                            What's To Come?
+                            What's Coming?
                         </Button>
                     </div>
                     <div className={styles.ReachUs}>

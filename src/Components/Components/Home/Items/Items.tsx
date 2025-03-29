@@ -1,7 +1,6 @@
 import { lazy, useRef, useState } from "react";
 const Text = lazy(() => import("../../../Text/Text"));
 import styles from "./Items.module.css";
-import FrontShirt from "/Front.png"
 import Front from "/Front.jpeg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -37,7 +36,6 @@ export default function Items() {
                     >
                         <Text
                             HasUnderline={true}
-                            HasUnderline2={true}
                             UnderlineID="ItemsUnderline"
                             style={{
                                 fontSize: "2.2rem",

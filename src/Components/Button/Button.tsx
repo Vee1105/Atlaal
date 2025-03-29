@@ -14,6 +14,8 @@ export type ButtonProps = {
     onClick?: () => void;
     href?: string;
     color?: "White" | "Black";
+    HoverEffect?: boolean;
+    className?: string;
 };
 
 const Button = ({
@@ -25,6 +27,8 @@ const Button = ({
     UnderlineButton = false,
     color = undefined,
     href,
+    HoverEffect = false,
+    className,
 }: ButtonProps) => {
     const theme = useAppSelector((state) => state.theme.mode);
     const style = {
@@ -66,7 +70,7 @@ const Button = ({
                             style={style}
                             className={styles.ButtonUnderlineStyling}
                         >
-                            <Text style={{ color: color ? color : "#fff" }}>
+                            <Text style={{ color: color ? color : "#fff", textAlign: "start" }}>
                                 {children}
                             </Text>
                             <div
@@ -84,7 +88,7 @@ const Button = ({
                     </div>
                 </div>
             ) : (
-                <div className={styles.Button}>
+                <div className={`${styles.Button} ${className}`}>
                     <a
                         style={style}
                         className={styles.ButtonStyling}
@@ -92,7 +96,7 @@ const Button = ({
                     >
                         {children}
                     </a>
-                    <div className={styles.ButtonHover}></div>
+                    {HoverEffect ? <div className={styles.ButtonHover}></div> : null}
                 </div>
             )}
         </>

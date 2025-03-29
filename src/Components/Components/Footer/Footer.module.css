@@ -23,3 +23,12 @@
     align-items: flex-start;
     gap: 20px;
 }
+
+@media screen and (max-width: 750px) {
+    .Content > div {
+        width: 49%;
+    }
+    .Content {
+        gap: 5px;
+    }
+}

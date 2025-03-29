@@ -1,6 +1,6 @@
 .Items {
     width: 100%;
-    height: 90vh;
+    height: 900px;
     display: flex;
     background-color: hsla(0, 0%, 87%, 0.421);
 }
@@ -60,7 +60,7 @@
     flex-direction: column;
     align-items: center;
     scroll-snap-align: center;
-    min-width: 500px;
+    min-width: 90vw;
     height: 100%;
     position: relative;
     transition: 0.5s;
@@ -69,8 +69,7 @@
 }
 
 .ItemImage {
-    width: 100%;
-    height: 90%;
+    max-height: 90%;
     object-fit: cover;
     object-position: bottom;
 }
@@ -93,11 +92,14 @@
         min-width: 100%;
     }
     .ItemDisplay > img {
-        max-width: 100%;
+        max-width: 500px;
     }
 }
 
 @media screen and (max-width: 500px) {
+    .Items {
+        height: 650px;
+    }
     .Item {
         width: 100%;
         height: 500px;
