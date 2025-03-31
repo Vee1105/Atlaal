@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import styles from "./Footer.module.css";
 import { Colors } from "../../Themes/Theme";
+import { Logo, LogoUnanimated } from "../Home/Header/Header";
 const Text = lazy(() => import("../../Text/Text"));
 const Button = lazy(() => import("../../Button/Button"));
 
@@ -49,17 +50,21 @@ const Footer = () => {
                             About Atlaal
                         </Button>
                         <Button UnderlineButton color="White">
-                            Our Story
-                        </Button>
-                        <Button UnderlineButton color="White">
-                            Work With Us
-                        </Button>
-                        <Button UnderlineButton color="White">
                             Culture
                         </Button>
                         <Button UnderlineButton color="White">
                             What's Coming?
                         </Button>
+                        <Button UnderlineButton color="White">
+                            Terms & Conditions
+                        </Button>
+                        <Button UnderlineButton color="White">
+                            Privacy Policy
+                        </Button>
+                        <Button UnderlineButton color="White">
+                            FAQ
+                        </Button>
+
                     </div>
                     <div className={styles.ReachUs}>
                         <Text
@@ -70,20 +75,11 @@ const Footer = () => {
                             }}
                             type="subtext"
                         >
-                            Connect
+                            News & Connect
                         </Text>
                     </div>
-                    <div className={styles.Newsletter}>
-                        <Text
-                            style={{
-                                color: colors.textColor.news,
-                                textAlign: "center",
-                                fontWeight: "400",
-                            }}
-                            type="subtext"
-                        >
-                            News
-                        </Text>
+                    <div className={styles.FooterLogo}>
+                        <LogoUnanimated color="transparent" style={{outline: "1px solid white"}} />
                     </div>
                 </div>
             </div>

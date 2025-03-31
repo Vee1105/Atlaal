@@ -17,10 +17,10 @@
 - The SVG Logo now also switches colors.
 
 > Atlaal 0.0.2:
- What's to come:
  - Add the Collections Component (Panel).
  - Add the Top Sellers Component (Panel).
  - Add the Categories Component (Panel).
+ - Added a new dependancy Lenis for the scroll animation.
 
 > Atlaal 0.1.0:
  What's to come:

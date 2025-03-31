@@ -24,6 +24,18 @@
     gap: 20px;
 }
 
+.FooterLogo {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FooterLogo > svg {
+    align-self: center;
+}   
+
+
 @media screen and (max-width: 750px) {
     .Content > div {
         width: 49%;
