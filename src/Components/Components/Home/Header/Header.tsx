@@ -1,4 +1,4 @@
-import { lazy, useRef } from "react";
+import { lazy, useEffect, useRef, useState } from "react";
 const Button = lazy(() => import("../../../Button/Button"));
 import styles from "./Header.module.css";
 import { useGSAP } from "@gsap/react";
@@ -13,17 +13,42 @@ const MobileDevice = () => {
     else return false;
 };
 
-export default function Header() {
-    const width = MobileDevice() ? "100px" : "8rem";
-    const height = MobileDevice() ? "50px" : "4rem";
+type StyleAndDimensions = {
+    width?: string | number;
+    height?: string | number;
+    marginTop?: string | number;
+    marginLeft?: string | number;
+    paddingTop?: string | number;
+};
 
-    const TransistionStyles = {
-        width: width,
-        height: height,
-        marginTop: MobileDevice() ? "5px" : "10px",
-        marginLeft: MobileDevice() ? "20px" : 0,
-        paddingTop: MobileDevice() ? "10px" : "0px",
-    };
+export default function Header() {
+    const [Hover, setHover] = useState<boolean>(false);  
+    const [Dimensions, setDimensions] = useState<StyleAndDimensions>({
+        width: 0,
+        height: 0,
+    });
+    const [TransitionStyles, setTransitionStyles] =
+        useState<StyleAndDimensions>({
+            width: 0,
+            height: 0,
+            marginTop: 0,
+            marginLeft: 0,
+            paddingTop: 0,
+        });
+
+    useEffect(() => {
+        setDimensions({
+            width: MobileDevice() ? "100px" : "8rem",
+            height: MobileDevice() ? "50px" : "4rem",
+        });
+        setTransitionStyles({
+            width: Dimensions.width,
+            height: Dimensions.height,
+            marginTop: MobileDevice() ? "5px" : "10px",
+            marginLeft: MobileDevice() ? "20px" : 0,
+            paddingTop: MobileDevice() ? "10px" : "0px",
+        });
+    }, [Dimensions.height, Dimensions.width]);
 
     const LogoRef = useRef(null);
     const HeaderRef = useRef(null);
@@ -72,6 +97,7 @@ export default function Header() {
             duration: 0.1,
             ease: "power3.inOut",
             backgroundColor: colors.backgroundColor,
+            
         });
     });
 
@@ -83,11 +109,13 @@ export default function Header() {
             }}
             ref={HeaderRef}
             className={styles.HeaderContainer}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
         >
             <div className={styles.Header}>
                 <LeftSide />
                 <div className={styles.LogoDiv}>
-                    <div ref={LogoRef} style={TransistionStyles}>
+                    <div ref={LogoRef} style={TransitionStyles}>
                         <Logo />
                     </div>
                 </div>
