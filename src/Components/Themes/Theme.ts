@@ -52,7 +52,7 @@ export const Colors: ColorsTypes = {
             body: "#fff",
             caption: "hsla(0, 30%, 100%, 0.8)",
             button: "#fff",
-            news: "hsla(0, 0.00%, 95.50%, 0.7)",
+            news: "hsla(0, 0.00%, 95%, 0.7)",
         },
         accentColor: "hsl(205, 20%, 50%)",
         secondaryColor: "#fff",

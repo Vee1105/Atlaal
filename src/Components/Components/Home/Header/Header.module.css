@@ -17,7 +17,7 @@
     justify-content: space-between;
 }
 
-.CategoriesIcon {
+.Categories {
     display: none;
 }
 .LogoDiv {
@@ -35,64 +35,29 @@
 
 .LeftSide {
     display: flex;
-    padding-left: 120px;
+    justify-content: flex-start;
+    padding-left: 4rem;
     width: 40%;
 }
 
 .RightSide {
     display: flex;
-    padding-right: 120px;
-    /* width: 40%; */
-    justify-content: center;
-    /* background-color: blue; */
-}
-
-.NewsContainer {
-    position: absolute;
-    height: 20px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 10%;
-    overflow: hidden;
-    text-wrap: wrap;
-    text-align: start;
-    
-    @media screen and (max-width: 900px) {
-        display: none;
-    }
+    padding-right: 4rem;
+    width: 40%;
+    gap: 0.5rem;
+    justify-content: flex-end;
 }
 
 .ContactUsText, .CategoriesText {
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 @media screen and (max-width: 900px) {
-    .Header {
-        /* background-color: blue ; */
-        width: 100vw;
-        align-self: center;
-    }
     .LeftSide {
-        width: 40%;
-        padding-left: 2%;
-        /* background-color: red; */
+        padding-left: 2rem;
     }
     .RightSide {
-        width: 40%;
-        padding-right: 2%;
-        /* background-color: black; */
-        display: flex;
-        justify-content: flex-end;
-    }
-    .ContactUsText, .CategoriesText {
-        font-size: 0.82rem;
-        font-weight: 500;
-    }
-}
-
-@media screen and (max-width: 550px) {
-    .ContactUsText, .CategoriesText {
-        font-size: 0.7rem;
+        padding-right: 2rem;
     }
 }
 
@@ -106,15 +71,12 @@
     .CategoriesText {
         display: none;
     }
-    .CategoriesIcon {
+    .Categories {
         display: block;
     }
     .ContactUs {
         display: none;
     }
-    /* .Logo {
-        animation: marginleft 1s ease-in-out 4s forwards;
-    } */
     .RightSide {
         position: relative;
         width: 100vw;

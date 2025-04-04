@@ -1,0 +1,9 @@
+.Buttons {
+    padding: 0.175rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(5rem);
+    background-color: hsla(0, 0%, 70%, 0.2);
+} 

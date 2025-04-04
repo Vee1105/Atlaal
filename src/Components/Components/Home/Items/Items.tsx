@@ -4,8 +4,15 @@ import styles from "./Items.module.css";
 import Front from "/Front.jpeg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { Colors } from "../../../Themes/Theme";
 
-export default function Items() {
+type ItemsProps = {
+    backgroundColor: string;
+    mode: "Light" | "Dark";
+
+}
+
+export default function Items({backgroundColor, mode = "Light"}: ItemsProps) {
     const SliderRef = useRef<HTMLDivElement>(null);
     const ItemsID = document.getElementById("ItemsUnderline");
 
@@ -20,9 +27,11 @@ export default function Items() {
         });
     }, [itemsHovered]);
 
+    const colors = Colors[`${mode == "Light" ? "Dark" : "Light"}`];
+
     return (
         <>
-            <div className={styles.Items}>
+            <div style={{ backgroundColor: backgroundColor }} className={styles.Items}>
                 <div className={styles.ContentContainer}>
                     <div
                         style={{
@@ -37,10 +46,12 @@ export default function Items() {
                         <Text
                             HasUnderline={true}
                             UnderlineID="ItemsUnderline"
+                            UnderlineStyle={{ backgroundColor: colors.textColor.default }}
                             style={{
                                 fontSize: "2.2rem",
                                 fontWeight: "300",
                                 lineHeight: "1.3",
+                                color: colors.textColor.default,
                             }}
                             id="ItemsTitle"
                         >
@@ -75,6 +86,7 @@ export default function Items() {
                             price={600}
                             UnderlineID={"Underline1"}
                             TextID="Text1"
+                            mode={mode}
                         />
                         {/* <BlankSpace /> */}
                     </div>
@@ -91,6 +103,7 @@ type ItemProps = {
     UnderlineID?: string;
     TextID?: string;
     ImageOnHover?: string;
+    mode: "Light" | "Dark";
 };
 
 const BlankSpace = () => {
@@ -106,16 +119,22 @@ const BlankSpace = () => {
     );
 };
 
-const DiplayItems = ({
-    title,
-    image,
-    UnderlineID,
-}: ItemProps) => {
+const DiplayItems = ({ title, image, UnderlineID, mode = "Light" }: ItemProps) => {
     const [Hovered, setHovered] = useState(false);
     const TheUnderlineID = document.querySelectorAll(`#${UnderlineID}`);
     const DivRef = useRef(null);
-    const ImageRef = useRef(null)
+    const ImageRef = useRef(null);
     useGSAP(() => {
+        gsap.to(ImageRef.current, {
+            scrollTrigger: {
+                trigger: ImageRef.current,
+                start: "top 70%",
+                toggleActions: "play none none none",
+            },
+            duration: 1,
+            height: "100%",
+            ease: "power3.inOut",
+        });
         gsap.to(TheUnderlineID, {
             duration: 1,
             width: Hovered ? "100%" : "20%",
@@ -124,20 +143,24 @@ const DiplayItems = ({
         });
         gsap.to(DivRef.current, {
             duration: 0.5,
-            scale: Hovered ? 0.95 : 1,
             ease: "power3.inOut",
         });
     }, [Hovered]);
 
+    const colors = Colors[`${mode == "Light" ? "Dark" : "Light"}`];
+
     return (
         <div ref={DivRef} className={styles.ItemDisplay}>
-            <img
-                className={styles.ItemImage}
-                ref={ImageRef}
-                src={image}
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-            />
+            <div className={styles.ItemImageDiv}>
+                <img
+                    className={styles.ItemImage}
+                    ref={ImageRef}
+                    src={image}
+                    onMouseEnter={() => setHovered(true)}
+                    onMouseLeave={() => setHovered(false)}
+                    height={"120%"}
+                />
+            </div>
             <div
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
@@ -145,10 +168,18 @@ const DiplayItems = ({
             >
                 <Text
                     UnderlineID={UnderlineID}
-                    UnderlineStyle={{ width: "20%", translate: "-100% 0" }}
+                    UnderlineStyle={{
+                        width: "20%",
+                        translate: "-100% 0",
+                        backgroundColor: colors.textColor.default,
+                    }}
                     HasUnderline={true}
                     className={"Title"}
-                    style={{ fontWeight: "500", fontSize: "1.3rem" }}
+                    style={{
+                        fontWeight: "500",
+                        fontSize: "1.3rem",
+                        color: colors.textColor.default,
+                    }}
                 >
                     {title}
                 </Text>

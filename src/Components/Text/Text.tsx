@@ -17,6 +17,7 @@ interface TextProps
     UnderlineID?: string;
     TextID?: string;
     UnderlineStyle?: React.CSSProperties;
+    HasDarkBackground?: boolean;
 }
 
 export default function Text({
@@ -30,13 +31,16 @@ export default function Text({
     UnderlineID,
     TextID,
     UnderlineStyle,
+    HasDarkBackground = false,
 }: TextProps) {
     const theme = getTheme();
 
     const colors = Colors[`${theme}`];
 
+
+
     const DefaultStyling = {
-        color: AffectedByTheme ? colors?.textColor.default : "#fff",
+        color: HasDarkBackground ? "#fff" : AffectedByTheme ? colors?.textColor.default : "#fff",
         lineHeight: "1",
         overflow: "hidden",
         ...style,

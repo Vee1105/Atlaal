@@ -1,46 +1,90 @@
 .Footer {
     width: 100%;
     background-color: hsl(0, 0%, 5%);
+    overflow: hidden;
 }
 
-.ContentContainer {
-    width: 100%;
-    height: 100%;
+.Services {
+    grid-column-start: 1;
+}
+
+.About {
+    grid-column-start: 2;
 }
 
 .Content {
     padding: 50px;
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 18.75rem 18.75rem 18.75rem;
 }
 
 .Content > div {
-    height: 300px;
-    width: 30%;
+    height: 18.75rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 1.5rem;
 }
 
 .FooterLogo {
-    min-width: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    grid-column: 1/span 3;
+    grid-row-start: 2;
 }
 
 .FooterLogo > svg {
     align-self: center;
-}   
+    scale: 1.5;
+    translate: -2rem 12rem;
+}  
+
+.Socials {
+    display: flex;
+    gap: 0.5rem;
+}
 
 
-@media screen and (max-width: 750px) {
-    .Content > div {
-        width: 49%;
-    }
+@media screen and (max-width: 965px) {
     .Content {
-        gap: 5px;
+        grid-template-columns: 18.75rem 18.75rem;
+        gap: 2rem;
+    }
+    .Content > div {
+        height: auto;
+        width: 100%;
+    }
+    .NewsConnect {
+        grid-column-start: 1;
+    }
+    .About {
+        grid-column-start: 2;
+    }
+    .FooterLogo {
+        grid-column: 2;
+    }
+    .FooterLogo > svg {
+        translate: 0 0;
+        scale: 1;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .Content {
+        grid-template-columns: 50% 50%;
+    }
+
+    .NewsConnect {
+        grid-column-start: 1;
+    }
+    .About {
+        grid-column-start: 2;
+    }
+    .FooterLogo {
+        grid-column: 2;
+        width: 100%;
     }
 }

@@ -11,11 +11,14 @@ export type ButtonProps = {
     height?: string | number;
     ButtonStyling?: React.CSSProperties;
     UnderlineButton?: boolean;
+    BackgroundButton?: boolean;
     onClick?: () => void;
+    ref?: React.RefObject<null>;
     href?: string;
     color?: "White" | "Black";
     HoverEffect?: boolean;
     className?: string;
+    DivWidth?: string | number;
 };
 
 const Button = ({
@@ -23,12 +26,15 @@ const Button = ({
     width,
     height,
     onClick,
+    ref,
     ButtonStyling,
     UnderlineButton = false,
+    BackgroundButton = false,
     color = undefined,
     href,
     HoverEffect = false,
     className,
+    DivWidth,
 }: ButtonProps) => {
     const theme = useAppSelector((state) => state.theme.mode);
     const style = {
@@ -40,28 +46,51 @@ const Button = ({
         ...ButtonStyling,
     };
 
+    const defaultButtonStyling = {
+        color: color ? color : theme === "Light" ? "#000" : "#fff",
+        width: width ? width : "auto",
+        height: height ? height : "auto",
+        padding: "5px 10px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        ...ButtonStyling,
+    };
+
+    const ButtonDivStyles = {
+        width: DivWidth,
+    };
+
     const UnderlineButtonRef = useRef(null);
+    const ButtonRef = useRef(null);
 
     const [hovered, setHovered] = useState(false);
+    const [buttonHovered, setButtonHovered] = useState(false);
 
     useGSAP(() => {
         gsap.to(UnderlineButtonRef.current, {
             duration: 0.2,
-            width: hovered ? "20%" : "100%",
+            width: hovered ? "0%" : "100%",
             ease: "power3.inOut",
         });
         gsap.to(UnderlineButtonRef.current, {
             duration: 0.5,
             delay: 0.3,
-            translate: hovered ? "520% 0" : "0% 0",
             ease: "power3.inOut",
         });
-    }, [hovered]);
+        gsap.to(ButtonRef.current, {
+            duration: 0.1,
+            backgroundColor: buttonHovered ? "transparent" : "#fff",
+            color: buttonHovered ? "#fff" : "#000",
+            border: buttonHovered ? "1px solid #fff" : "1px solid #000",
+            ease: "power3.inOut",
+        });
+    }, [hovered, buttonHovered]);
 
     return (
         <>
-            {UnderlineButton ? (
-                <div className={styles.ButtonUnderline}>
+            {(UnderlineButton && (
+                <div ref={ref} className={styles.ButtonUnderline}>
                     <div className={styles.ButtonUnderlineContent}>
                         <a
                             onMouseEnter={() => setHovered(true)}
@@ -70,7 +99,12 @@ const Button = ({
                             style={style}
                             className={styles.ButtonUnderlineStyling}
                         >
-                            <Text style={{ color: color ? color : "#fff", textAlign: "start" }}>
+                            <Text
+                                style={{
+                                    color: color ? color : "#fff",
+                                    textAlign: "start",
+                                }}
+                            >
                                 {children}
                             </Text>
                             <div
@@ -81,24 +115,45 @@ const Button = ({
                                         ? "#000"
                                         : "#fff",
                                     height: "2px",
+                                    alignSelf: "end",
                                 }}
                                 ref={UnderlineButtonRef}
                             ></div>
                         </a>
                     </div>
                 </div>
-            ) : (
-                <div className={`${styles.Button} ${className}`}>
-                    <a
-                        style={style}
-                        className={styles.ButtonStyling}
-                        onClick={onClick}
+            )) ||
+                (BackgroundButton && (
+                    <div
+                        ref={ref}
+                        style={ButtonDivStyles}
+                        className={`${styles.Button} ${className}`}
                     >
-                        {children}
-                    </a>
-                    {HoverEffect ? <div className={styles.ButtonHover}></div> : null}
-                </div>
-            )}
+                        <a
+                            style={style}
+                            className={styles.ButtonStyling}
+                            onClick={onClick}
+                            ref={ButtonRef}
+                            onMouseEnter={() => setButtonHovered(true)}
+                            onMouseLeave={() => setButtonHovered(false)}
+                        >
+                            {children}
+                        </a>
+                        {HoverEffect ? (
+                            <div className={styles.ButtonHover}></div>
+                        ) : null}
+                    </div>
+                ))
+                || (
+                    <div ref={ref}>
+                        <a
+                            style={defaultButtonStyling}
+                            onClick={onClick}
+                        >
+                            {children}
+                        </a>
+                    </div>
+                )}
         </>
     );
 };
