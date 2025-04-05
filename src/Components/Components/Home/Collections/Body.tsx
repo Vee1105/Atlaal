@@ -45,7 +45,9 @@ export default function Body() {
                     style={{ opacity: 0, translate: "0 50px" }}
                 >
                     <Button UnderlineButton color="White">
-                        <Text AffectedByTheme={false} type="subtitle">Shop The Collection</Text>
+                        <Text AffectedByTheme={false}>
+                            Shop The Collection
+                        </Text>
                     </Button>
                 </div>
             </Panel>

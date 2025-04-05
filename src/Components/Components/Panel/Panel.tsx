@@ -1,7 +1,7 @@
 import styles from "./Panel.module.css";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 type PanelProps = {
     children: React.ReactNode;
@@ -11,6 +11,9 @@ type PanelProps = {
 
 export default function Panel({ children, image, video }: PanelProps) {
     const VideoRef = useRef<HTMLVideoElement>(null);
+
+    const [paused, setPaused] = useState(false);
+    const [muted, setMuted] = useState(true);
 
     useGSAP(() => {
         gsap.to(VideoRef.current, {
@@ -68,41 +71,76 @@ export default function Panel({ children, image, video }: PanelProps) {
                     >
                         <a
                             className={`${styles.Buttons} ${styles.Left}`}
+                            onClick={() => {
+                                if (!paused) {
+                                    VideoRef.current?.pause();
+                                    setPaused(true);
+                                } else {
+                                    VideoRef.current?.play();
+                                    setPaused(false);
+                                }
+                            }}
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="30"
-                                height="30"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    fill="white"
-                                    d="M15 18q-.402 0-.701-.299T14 17V7q0-.402.299-.701T15 6h1.5q.402 0 .701.299T17.5 7v10q0 .402-.299.701T16.5 18zm-7.5 0q-.402 0-.701-.299T6.5 17V7q0-.402.299-.701T7.5 6H9q.402 0 .701.299T10 7v10q0 .402-.299.701T9 18z"
-                                />
-                            </svg>
+                            {paused ? (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path fill="white" d="M8 5.14v14l11-7z" />
+                                </svg>
+                            ) : (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        fill="white"
+                                        d="M15 18q-.402 0-.701-.299T14 17V7q0-.402.299-.701T15 6h1.5q.402 0 .701.299T17.5 7v10q0 .402-.299.701T16.5 18zm-7.5 0q-.402 0-.701-.299T6.5 17V7q0-.402.299-.701T7.5 6H9q.402 0 .701.299T10 7v10q0 .402-.299.701T9 18z"
+                                    />
+                                </svg>
+                            )}
                         </a>
                         <a
                             className={`${styles.Buttons} ${styles.Right}`}
+                            onClick={() => {
+                                if (!muted && VideoRef.current) {
+                                    VideoRef.current.muted = true;
+                                    setMuted(true);
+                                } else if (VideoRef.current) {
+                                    VideoRef.current.muted = false;
+                                    setMuted(false);
+                                }
+                            }}
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="30"
-                                height="30"
-                                viewBox="0 0 24 24"
-                            >
-                                <g fill="none">
+                            {muted ? (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                >
                                     <path
                                         fill="white"
-                                        d="M4.158 13.93a3.75 3.75 0 0 1 0-3.86a1.5 1.5 0 0 1 .993-.7l1.693-.339a.45.45 0 0 0 .258-.153L9.17 6.395c1.182-1.42 1.774-2.129 2.301-1.938S12 5.572 12 7.42v9.162c0 1.847 0 2.77-.528 2.962c-.527.19-1.119-.519-2.301-1.938L7.1 15.122a.45.45 0 0 0-.257-.153L5.15 14.63a1.5 1.5 0 0 1-.993-.7"
+                                        d="m19.8 22.6l-3.025-3.025q-.625.4-1.325.688t-1.45.462v-2.05q.35-.125.688-.25t.637-.3L12 14.8V20l-5-5H3V9h3.2L1.4 4.2l1.4-1.4l18.4 18.4zm-.2-5.8l-1.45-1.45q.425-.775.638-1.625t.212-1.75q0-2.35-1.375-4.2T14 5.275v-2.05q3.1.7 5.05 3.138T21 11.975q0 1.325-.363 2.55T19.6 16.8m-3.35-3.35L14 11.2V7.95q1.175.55 1.838 1.65T16.5 12q0 .375-.062.738t-.188.712M12 9.2L9.4 6.6L12 4z"
                                     />
+                                </svg>
+                            ) : (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                >
                                     <path
-                                        stroke="white"
-                                        stroke-linecap="round"
-                                        stroke-width="2"
-                                        d="m15 15l6-6m0 6l-6-6"
+                                        fill="white"
+                                        d="M19 11.975q0-2.075-1.1-3.787t-2.95-2.563q-.375-.175-.55-.537t-.05-.738q.15-.4.538-.575t.787 0Q18.1 4.85 19.55 7.063T21 11.974t-1.45 4.913t-3.875 3.287q-.4.175-.788 0t-.537-.575q-.125-.375.05-.737t.55-.538q1.85-.85 2.95-2.562t1.1-3.788M7 15H4q-.425 0-.712-.288T3 14v-4q0-.425.288-.712T4 9h3l3.3-3.3q.475-.475 1.088-.213t.612.938v11.15q0 .675-.612.938T10.3 18.3zm9.5-3q0 1.05-.475 1.988t-1.25 1.537q-.25.15-.513.013T14 15.1V8.85q0-.3.263-.437t.512.012q.775.625 1.25 1.575t.475 2"
                                     />
-                                </g>
-                            </svg>
+                                </svg>
+                            )}
                         </a>
                     </div>
                 </>
@@ -126,7 +164,7 @@ export default function Panel({ children, image, video }: PanelProps) {
                     alignItems: "center",
                     flexDirection: "column",
                     marginBottom: "70px",
-                    gap: "1.5rem",
+                    gap: "0.5rem",
                 }}
             >
                 {children}

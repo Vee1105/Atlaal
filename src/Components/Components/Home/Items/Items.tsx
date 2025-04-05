@@ -5,18 +5,21 @@ import Front from "/Front.jpeg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Colors } from "../../../Themes/Theme";
+import { ScrollTrigger } from "gsap/all";
 
 type ItemsProps = {
     backgroundColor: string;
     mode: "Light" | "Dark";
+};
 
-}
-
-export default function Items({backgroundColor, mode = "Light"}: ItemsProps) {
+export default function Items({ backgroundColor, mode = "Light" }: ItemsProps) {
     const SliderRef = useRef<HTMLDivElement>(null);
     const ItemsID = document.getElementById("ItemsUnderline");
+    const ItemsRef = useRef<HTMLDivElement>(null);
 
     const [itemsHovered, setItemsHovered] = useState(false);
+
+    gsap.registerPlugin(ScrollTrigger);
 
     useGSAP(() => {
         gsap.to(ItemsID, {
@@ -25,13 +28,25 @@ export default function Items({backgroundColor, mode = "Light"}: ItemsProps) {
             translate: itemsHovered ? "101% 0" : "-101% 0",
             ease: "power3.inOut",
         });
+        gsap.to(ItemsRef.current, {
+            scrollTrigger: {
+                trigger: ItemsRef.current,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1,
+            },
+        })
     }, [itemsHovered]);
 
     const colors = Colors[`${mode == "Light" ? "Dark" : "Light"}`];
 
     return (
         <>
-            <div style={{ backgroundColor: backgroundColor }} className={styles.Items}>
+            <div
+                style={{ backgroundColor: "blue", position: "sticky" }}
+                className={styles.Items}
+                ref={ItemsRef}
+            >
                 <div className={styles.ContentContainer}>
                     <div
                         style={{
@@ -46,7 +61,9 @@ export default function Items({backgroundColor, mode = "Light"}: ItemsProps) {
                         <Text
                             HasUnderline={true}
                             UnderlineID="ItemsUnderline"
-                            UnderlineStyle={{ backgroundColor: colors.textColor.default }}
+                            UnderlineStyle={{
+                                backgroundColor: colors.textColor.default,
+                            }}
                             style={{
                                 fontSize: "2.2rem",
                                 fontWeight: "300",
@@ -119,7 +136,12 @@ const BlankSpace = () => {
     );
 };
 
-const DiplayItems = ({ title, image, UnderlineID, mode = "Light" }: ItemProps) => {
+const DiplayItems = ({
+    title,
+    image,
+    UnderlineID,
+    mode = "Light",
+}: ItemProps) => {
     const [Hovered, setHovered] = useState(false);
     const TheUnderlineID = document.querySelectorAll(`#${UnderlineID}`);
     const DivRef = useRef(null);

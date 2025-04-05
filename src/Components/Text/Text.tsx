@@ -72,7 +72,7 @@ export default function Text({
                 <span
                     ref={ref}
                     style={DefaultStyling}
-                    className={`${className}`}
+                    className={`${className} ${styles.text}`}
                     id={TextID}
                 >
                     {children}

@@ -31,7 +31,7 @@
 
 @media screen and (max-width: 900px) {
     .text {
-        font-size: 1.4rem;
+        font-size: 0.95rem;
     }
     .title {
         font-size: 2.4rem;
@@ -57,7 +57,7 @@
 
 @media screen and (max-width: 500px) {
     .text {
-        font-size: 1.2rem;
+        font-size: 0.9rem;
     }
     
     .subtext {
@@ -67,7 +67,7 @@
     }
     
     .title {
-        font-size: 1.8rem;
+        font-size: 2rem;
         font-weight: 500;
         line-height: 1.3;
     }
