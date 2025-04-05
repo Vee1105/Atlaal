@@ -67,8 +67,7 @@ export default function Panel({ children, image, video }: PanelProps) {
                         }}
                     >
                         <a
-                            style={{ left: "3rem", position: "absolute" }}
-                            className={styles.Buttons}
+                            className={`${styles.Buttons} ${styles.Left}`}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -83,8 +82,7 @@ export default function Panel({ children, image, video }: PanelProps) {
                             </svg>
                         </a>
                         <a
-                            style={{ right: "3rem", position: "absolute" }}
-                            className={styles.Buttons}
+                            className={`${styles.Buttons} ${styles.Right}`}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
