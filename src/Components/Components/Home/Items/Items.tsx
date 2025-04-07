@@ -16,7 +16,6 @@ export default function Items({ backgroundColor, mode = "Light" }: ItemsProps) {
     const SliderRef = useRef<HTMLDivElement>(null);
     const ItemsID = document.getElementById("ItemsUnderline");
     const ItemsRef = useRef<HTMLDivElement>(null);
-
     const [itemsHovered, setItemsHovered] = useState(false);
 
     gsap.registerPlugin(ScrollTrigger);
@@ -32,7 +31,9 @@ export default function Items({ backgroundColor, mode = "Light" }: ItemsProps) {
             scrollTrigger: {
                 trigger: ItemsRef.current,
                 start: "top top",
-                end: "bottom bottom",
+                end: "bottom top",
+                toggleActions: "play none none reverse",
+                pin: true,
                 scrub: 1,
             },
         })
@@ -43,7 +44,7 @@ export default function Items({ backgroundColor, mode = "Light" }: ItemsProps) {
     return (
         <>
             <div
-                style={{ backgroundColor: "blue", position: "sticky" }}
+                style={{ backgroundColor: backgroundColor }}
                 className={styles.Items}
                 ref={ItemsRef}
             >
@@ -64,8 +65,8 @@ export default function Items({ backgroundColor, mode = "Light" }: ItemsProps) {
                             UnderlineStyle={{
                                 backgroundColor: colors.textColor.default,
                             }}
+                            type="subtitle"
                             style={{
-                                fontSize: "2.2rem",
                                 fontWeight: "300",
                                 lineHeight: "1.3",
                                 color: colors.textColor.default,
@@ -123,18 +124,18 @@ type ItemProps = {
     mode: "Light" | "Dark";
 };
 
-const BlankSpace = () => {
-    return (
-        <>
-            <div style={{ opacity: 0 }}>1</div>
-            <div style={{ opacity: 0 }}>1</div>
-            <div style={{ opacity: 0 }}>1</div>
-            <div style={{ opacity: 0 }}>1</div>
-            <div style={{ opacity: 0 }}>1</div>
-            <div style={{ opacity: 0 }}>1</div>
-        </>
-    );
-};
+// const BlankSpace = () => {
+//     return (
+//         <>
+//             <div style={{ opacity: 0 }}>1</div>
+//             <div style={{ opacity: 0 }}>1</div>
+//             <div style={{ opacity: 0 }}>1</div>
+//             <div style={{ opacity: 0 }}>1</div>
+//             <div style={{ opacity: 0 }}>1</div>
+//             <div style={{ opacity: 0 }}>1</div>
+//         </>
+//     );
+// };
 
 const DiplayItems = ({
     title,

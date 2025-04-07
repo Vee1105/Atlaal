@@ -59,7 +59,7 @@
     align-items: center;
     scroll-snap-align: center;
     min-width: 90vw;
-    height: 100%;
+    height: 90%;
     position: relative;
     transition: 0.5s;
     gap: 20px;
@@ -103,7 +103,7 @@
 
 @media screen and (max-width: 500px) {
     .Items {
-        height: 650px;
+        height: 31.25rem;
     }
     .Item {
         width: 100%;

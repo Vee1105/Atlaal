@@ -31,7 +31,7 @@ export default function Body() {
 
     return (
         <div className={styles.Body}>
-            <Panel video={Session1}>
+            <Panel video={Session1} link="/shop">
                 <Text
                     type="title"
                     ref={TitleRef}

@@ -1,7 +1,9 @@
+import { lazy } from "react";
 import "./App.css";
 import { Colors } from "./Components/Themes/Theme";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/Home";
+const HomePage = lazy(() => import("./pages/Home/Home"));
+const NotFound = lazy(() => import("./pages/404NotFound/NotFound"));    
 import { useAppSelector } from "./store/hooks";
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
         </div>

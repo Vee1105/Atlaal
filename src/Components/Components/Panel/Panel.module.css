@@ -7,7 +7,18 @@
     border-radius: 0.5rem;
     backdrop-filter: blur(1rem);
     background-color: hsla(0, 0%, 50%, 0.4);
-} 
+    z-index: 5;
+}
+
+.Buttons > svg {
+    width: 28px;
+    height: 28px;
+    transition: 0.5s ease-in-out;
+}
+
+.Buttons:hover {
+    filter: drop-shadow(0px 0px 5px hsla(0, 0%, 100%, 1));
+}
 
 .Left {
     left: 3rem;
@@ -17,7 +28,19 @@
     right: 3rem;
 }
 
+@media screen and (max-width: 900px) {
+    .Buttons > svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
 @media screen and (max-width: 380px) {
+    .Buttons > svg {
+        width: 20px;
+        height: 20px;
+    }
+
     .Left {
         left: 1rem;
     }

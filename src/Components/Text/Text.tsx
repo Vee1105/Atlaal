@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Text.module.css";
-import { Colors, getTheme } from "../Themes/Theme";
+import { Colors } from "../Themes/Theme";
 
 interface TextProps
     extends React.DetailedHTMLProps<
@@ -33,7 +33,7 @@ export default function Text({
     UnderlineStyle,
     HasDarkBackground = false,
 }: TextProps) {
-    const theme = getTheme();
+    const theme = "Light";
 
     const colors = Colors[`${theme}`];
 

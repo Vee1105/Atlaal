@@ -7,9 +7,10 @@ type PanelProps = {
     children: React.ReactNode;
     image?: string;
     video?: string;
+    link?: string;
 };
 
-export default function Panel({ children, image, video }: PanelProps) {
+export default function Panel({ children, image, video, link }: PanelProps) {
     const VideoRef = useRef<HTMLVideoElement>(null);
 
     const [paused, setPaused] = useState(false);
@@ -44,8 +45,21 @@ export default function Panel({ children, image, video }: PanelProps) {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "flex-end",
+                cursor: "pointer",
             }}
         >
+            {link && (
+                <a
+                    href={link}
+                    rel="noreferrer"
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        position: "absolute",
+                        zIndex: 2,
+                    }}
+                ></a>
+            )}
             {video && (
                 <>
                     <video
@@ -84,8 +98,6 @@ export default function Panel({ children, image, video }: PanelProps) {
                             {paused ? (
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="28"
-                                    height="28"
                                     viewBox="0 0 24 24"
                                 >
                                     <path fill="white" d="M8 5.14v14l11-7z" />
@@ -93,8 +105,6 @@ export default function Panel({ children, image, video }: PanelProps) {
                             ) : (
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="28"
-                                    height="28"
                                     viewBox="0 0 24 24"
                                 >
                                     <path
@@ -119,8 +129,6 @@ export default function Panel({ children, image, video }: PanelProps) {
                             {muted ? (
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="28"
-                                    height="28"
                                     viewBox="0 0 24 24"
                                 >
                                     <path
@@ -131,8 +139,6 @@ export default function Panel({ children, image, video }: PanelProps) {
                             ) : (
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="28"
-                                    height="28"
                                     viewBox="0 0 24 24"
                                 >
                                     <path
