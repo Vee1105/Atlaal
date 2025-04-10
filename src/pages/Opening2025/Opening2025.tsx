@@ -2,7 +2,7 @@ import { lazy } from "react";
 import styles from "./Opening2025.module.css";
 const Text = lazy(() => import("../../Components/Text/Text"));
 const Header = lazy(
-    () => import("../../Components/Components/Home/Header/Header")
+    () => import("../../Components/Header/Header")
 );
 
 const Opening2025 = () => {

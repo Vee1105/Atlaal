@@ -1,13 +1,13 @@
 import { lazy, useRef } from "react";
 import styles from "./Body.module.css";
 import Session1 from "/Session1.mp4";
-const Text = lazy(() => import("../../../Text/Text"));
+const Text = lazy(() => import("../../Text/Text"));
 const Panel = lazy(() => import("../../Panel/Panel"));
 const Items = lazy(() => import("../Items/Items"));
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import Button from "../../../Button/Button";
+import Button from "../../Button/Button";
 
 export default function Body() {
     const ButtonRef = useRef(null);

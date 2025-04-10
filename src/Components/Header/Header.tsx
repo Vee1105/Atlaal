@@ -1,11 +1,11 @@
 import { lazy, useEffect, useRef, useState } from "react";
-const Button = lazy(() => import("../../../Button/Button"));
+const Button = lazy(() => import("../Button/Button"));
 import styles from "./Header.module.css";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { Colors, getTheme } from "../../../Themes/Theme";
-const Text = lazy(() => import("../../../Text/Text"));
+import { Colors, getTheme } from "../Themes/Theme";
+const Text = lazy(() => import("../Text/Text"));
 
 export const MobileDevice = () => {
     const width = window.innerWidth;

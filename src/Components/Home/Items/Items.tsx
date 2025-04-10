@@ -1,10 +1,10 @@
 import { lazy, useRef, useState } from "react";
-const Text = lazy(() => import("../../../Text/Text"));
+const Text = lazy(() => import("../../Text/Text"));
 import styles from "./Items.module.css";
 import Front from "/Front.jpeg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { Colors } from "../../../Themes/Theme";
+import { Colors } from "../../Themes/Theme";
 import { ScrollTrigger } from "gsap/all";
 
 type ItemsProps = {

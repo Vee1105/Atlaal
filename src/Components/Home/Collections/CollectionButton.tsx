@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../../../store/hooks";
+import { useAppSelector } from "../../../store/hooks";
 import styles from "./CollectionButton.module.css";
 
 export type ButtonProps = {

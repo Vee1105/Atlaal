@@ -1,12 +1,12 @@
 import { lazy, useState } from "react";
 import styles from "./Footer.module.css";
-import { Colors } from "../../Themes/Theme";
-import { LogoUnanimated } from "../Home/Header/Header";
-import InputField from "../../InputField/InputField";
+import { Colors } from "../Themes/Theme";
+import InputField from "../InputField/InputField";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-const Text = lazy(() => import("../../Text/Text"));
-const Button = lazy(() => import("../../Button/Button"));
+import { LogoUnanimated } from "../Header/Header";
+const Text = lazy(() => import("../Text/Text"));
+const Button = lazy(() => import("../Button/Button"));
 
 const Footer = () => {
     const colors = Colors.Dark;
