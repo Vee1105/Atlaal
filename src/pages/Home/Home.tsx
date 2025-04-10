@@ -1,13 +1,36 @@
-import { lazy } from "react";
+import { lazy, useEffect, useRef } from "react";
 const Body = lazy(() => import("../../Components/Components/Home/Collections/Body"));
 const Header = lazy(() => import("../../Components/Components/Home/Header/Header"));
 const Footer = lazy(() => import("../../Components/Components/Footer/Footer"));
 import styles from "./Home.module.css"
+import Lenis from "lenis";
 
 export default function HomePage() {
+    const lenis = useRef<Lenis | null>(null);
+
+    useEffect(() => {
+        lenis.current = new Lenis({
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+            smoothWheel: true,
+        })
+
+        const animatte = (time: number) => {
+            lenis.current?.raf(time);
+            requestAnimationFrame(animatte);
+        };
+
+        requestAnimationFrame(animatte);
+
+        return () => {
+            lenis.current?.destroy();
+        }
+
+    }, [])
+
+
     return (
         <div className={styles.Home}>
-            <Header />
+            <Header Animated />
             <Body />
             <Footer />
         </div>

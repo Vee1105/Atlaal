@@ -1,6 +1,5 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import styles from "./Text.module.css";
-import { Colors } from "../Themes/Theme";
 
 interface TextProps
     extends React.DetailedHTMLProps<
@@ -26,43 +25,14 @@ export default function Text({
     style,
     ref,
     className,
-    AffectedByTheme = true,
     HasUnderline = false,
     UnderlineID,
     TextID,
     UnderlineStyle,
-    HasDarkBackground = false,
 }: TextProps) {
-    const theme = "Light";
 
-    const colors = Colors[`${theme}`];
-
-
-
-    const DefaultStyling = {
-        color: HasDarkBackground ? "#fff" : AffectedByTheme ? colors?.textColor.default : "#fff",
-        lineHeight: "1",
-        overflow: "hidden",
-        ...style,
-    };
-    const TitleStyling = {
-        color: AffectedByTheme ? colors?.textColor.title : "#fff",
-        ...style,
-    };
-    const SubTitleStyling = {
-        color: AffectedByTheme ? colors?.textColor.subtitle : "#fff",
-        ...style,
-    };
-    const BodyStyling = {
-        color: AffectedByTheme ? colors?.textColor.body : "#fff",
-        ...style,
-    };
-    const CaptionStyling = {
-        color: AffectedByTheme ? colors?.textColor.caption : "#fff",
-        ...style,
-    };
-    const NewsStyling = {
-        color: AffectedByTheme ? colors?.textColor.news : "#fff",
+    const DefaultStyling: CSSProperties = {
+        lineHeight: "1.2",
         ...style,
     };
 
@@ -102,7 +72,7 @@ export default function Text({
             {type === "title" && (
                 <span
                     ref={ref}
-                    style={TitleStyling}
+                    style={DefaultStyling}
                     className={`${styles.title} ${styles.text} ${className}`}
                 >
                     {children}
@@ -117,7 +87,7 @@ export default function Text({
             {type === "subtitle" && (
                 <span
                     ref={ref}
-                    style={SubTitleStyling}
+                    style={DefaultStyling}
                     className={`${styles.subtitle} ${styles.text} ${className}`}
                 >
                     {children}
@@ -132,7 +102,7 @@ export default function Text({
             {type === "body" && (
                 <span
                     ref={ref}
-                    style={BodyStyling}
+                    style={DefaultStyling}
                     className={`${styles.body} ${styles.text} ${className}`}
                 >
                     {children}
@@ -147,7 +117,7 @@ export default function Text({
             {type === "caption" && (
                 <span
                     ref={ref}
-                    style={CaptionStyling}
+                    style={DefaultStyling}
                     className={`${styles.caption} ${styles.text} ${className}`}
                 >
                     {children}
@@ -162,7 +132,7 @@ export default function Text({
             {type === "news" && (
                 <span
                     ref={ref}
-                    style={NewsStyling}
+                    style={DefaultStyling}
                     className={`${styles.news} ${styles.text} ${className}`}
                 >
                     {children}

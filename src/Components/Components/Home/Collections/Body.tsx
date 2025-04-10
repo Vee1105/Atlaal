@@ -31,7 +31,7 @@ export default function Body() {
 
     return (
         <div className={styles.Body}>
-            <Panel video={Session1} link="/shop">
+            <Panel video={Session1} link="/opening-2025">
                 <Text
                     type="title"
                     ref={TitleRef}
@@ -42,9 +42,9 @@ export default function Body() {
                 </Text>
                 <div
                     ref={ButtonRef}
-                    style={{ opacity: 0, translate: "0 50px" }}
+                    style={{ opacity: 0, translate: "0 50px", zIndex: 2 }}
                 >
-                    <Button UnderlineButton color="White">
+                    <Button href="/opening-2025" UnderlineButton color="White">
                         <Text AffectedByTheme={false}>
                             Shop The Collection
                         </Text>

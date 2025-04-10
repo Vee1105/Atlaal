@@ -43,6 +43,10 @@
     translate: -2rem 12rem;
 }  
 
+.NewsConnect {
+    gap: 0.5rem;
+}
+
 .Socials {
     display: flex;
     gap: 0.5rem;

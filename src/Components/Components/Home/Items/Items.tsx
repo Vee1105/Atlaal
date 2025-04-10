@@ -19,7 +19,6 @@ export default function Items({ backgroundColor, mode = "Light" }: ItemsProps) {
     const [itemsHovered, setItemsHovered] = useState(false);
 
     gsap.registerPlugin(ScrollTrigger);
-
     useGSAP(() => {
         gsap.to(ItemsID, {
             duration: 1,
@@ -27,17 +26,18 @@ export default function Items({ backgroundColor, mode = "Light" }: ItemsProps) {
             translate: itemsHovered ? "101% 0" : "-101% 0",
             ease: "power3.inOut",
         });
-        gsap.to(ItemsRef.current, {
-            scrollTrigger: {
-                trigger: ItemsRef.current,
-                start: "top top",
-                end: "bottom top",
-                toggleActions: "play none none reverse",
-                pin: true,
-                scrub: 1,
-            },
-        })
     }, [itemsHovered]);
+
+    useGSAP(() => {
+        ScrollTrigger.create({
+            trigger: ItemsRef.current,
+            start: "top top",
+            end: "bottom top",
+            id: "ItemsTrigger",
+            pin: true,
+            scrub: true,
+        });
+    }, []);
 
     const colors = Colors[`${mode == "Light" ? "Dark" : "Light"}`];
 
@@ -155,8 +155,8 @@ const DiplayItems = ({
                 toggleActions: "play none none none",
             },
             duration: 1,
-            height: "100%",
             ease: "power3.inOut",
+            height: "100%",
         });
         gsap.to(TheUnderlineID, {
             duration: 1,
@@ -178,6 +178,7 @@ const DiplayItems = ({
                 <img
                     className={styles.ItemImage}
                     ref={ImageRef}
+                    id="ItemImage"
                     src={image}
                     onMouseEnter={() => setHovered(true)}
                     onMouseLeave={() => setHovered(false)}

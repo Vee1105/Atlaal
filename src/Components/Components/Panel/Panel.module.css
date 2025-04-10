@@ -7,7 +7,7 @@
     border-radius: 0.5rem;
     backdrop-filter: blur(1rem);
     background-color: hsla(0, 0%, 50%, 0.4);
-    z-index: 5;
+    z-index: 2;
 }
 
 .Buttons > svg {

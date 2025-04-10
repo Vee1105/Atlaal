@@ -5,6 +5,8 @@ type InputProps = {
     placeholder?: string;
     className?: string;
     style?: React.CSSProperties;
+    id?: string;
+    name?: string;
 };
 
 export default function InputField({
@@ -12,11 +14,13 @@ export default function InputField({
     placeholder,
     className,
     style,
+    id,
+    name,
 }: InputProps) {
 
     const inputStyles = {
         ...style,
     }
 
-    return <input type={type} placeholder={placeholder} className={`${styles.Input} ${className}`} style={inputStyles} />;
+    return <input autoComplete="off" id={id} name={name} type={type} placeholder={placeholder} className={`${styles.Input} ${className}`} style={inputStyles} />;
 }

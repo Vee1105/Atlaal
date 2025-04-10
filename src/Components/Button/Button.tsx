@@ -61,23 +61,26 @@ const Button = ({
         width: DivWidth,
     };
 
-    const UnderlineButtonRef = useRef(null);
-    const ButtonRef = useRef(null);
+    const ButtonRef = useRef<HTMLAnchorElement>(null);
+    const underlineButton = useRef<HTMLDivElement>(null);
 
     const [hovered, setHovered] = useState(false);
     const [buttonHovered, setButtonHovered] = useState(false);
 
     useGSAP(() => {
-        gsap.to(UnderlineButtonRef.current, {
+        gsap.to(underlineButton.current, {
             duration: 0.2,
             width: hovered ? "0%" : "100%",
             ease: "power3.inOut",
         });
-        gsap.to(UnderlineButtonRef.current, {
+        gsap.to(underlineButton.current, {
             duration: 0.5,
             delay: 0.3,
             ease: "power3.inOut",
         });
+    }, [hovered]);
+
+    useGSAP(() => {
         gsap.to(ButtonRef.current, {
             duration: 0.1,
             backgroundColor: buttonHovered ? "transparent" : "#fff",
@@ -85,7 +88,7 @@ const Button = ({
             border: buttonHovered ? "1px solid #fff" : "1px solid #000",
             ease: "power3.inOut",
         });
-    }, [hovered, buttonHovered]);
+    }, [buttonHovered]);
 
     return (
         <>
@@ -117,7 +120,7 @@ const Button = ({
                                     height: "2px",
                                     alignSelf: "end",
                                 }}
-                                ref={UnderlineButtonRef}
+                                ref={underlineButton}
                             ></div>
                         </a>
                     </div>
@@ -143,13 +146,9 @@ const Button = ({
                             <div className={styles.ButtonHover}></div>
                         ) : null}
                     </div>
-                ))
-                || (
+                )) || (
                     <div ref={ref}>
-                        <a
-                            style={defaultButtonStyling}
-                            onClick={onClick}
-                        >
+                        <a style={defaultButtonStyling} onClick={onClick}>
                             {children}
                         </a>
                     </div>

@@ -3,7 +3,8 @@ import "./App.css";
 import { Colors } from "./Components/Themes/Theme";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 const HomePage = lazy(() => import("./pages/Home/Home"));
-const NotFound = lazy(() => import("./pages/404NotFound/NotFound"));    
+const NotFound = lazy(() => import("./pages/404NotFound/NotFound"));  
+const Opening2025 = lazy(() => import("./pages/Opening2025/Opening2025"));  
 import { useAppSelector } from "./store/hooks";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
+                    <Route path="opening-2025" element={<Opening2025 />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>

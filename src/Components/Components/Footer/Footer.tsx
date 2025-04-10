@@ -86,6 +86,7 @@ const Footer = () => {
                         </Text>
                         <InputField
                             type="email"
+                            id="Email"
                             placeholder="Enter your email"
                             style={{
                                 width: "100%",
