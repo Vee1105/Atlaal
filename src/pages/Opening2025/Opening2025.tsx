@@ -1,17 +1,37 @@
-import { lazy } from "react";
+import { lazy, useEffect, useRef } from "react";
 import styles from "./Opening2025.module.css";
-const Text = lazy(() => import("../../Components/Text/Text"));
-const Header = lazy(
-    () => import("../../Components/Header/Header")
-);
+import Lenis from "lenis";
+const Body = lazy(() => import("../../Components/Opening2025/Body"));
 
 const Opening2025 = () => {
+
+    const lenis = useRef<Lenis | null>(null);
+
+    useEffect(() => {
+        lenis.current = new Lenis({
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+            smoothWheel: true,
+        })
+
+        const animatte = (time: number) => {
+            lenis.current?.raf(time);
+            requestAnimationFrame(animatte);
+        };
+
+        requestAnimationFrame(animatte);
+
+        return () => {
+            lenis.current?.destroy();
+        }
+
+    }, [])
+
     return (
-        <div className={styles.Opening2025} style={{ overflow: "hidden", backgroundColor: "#000" }}>
-            <Header />
-            <div className={styles.Body}>
-                <Text AffectedByTheme={false} type="title">Opening 2025</Text>
-            </div>
+        <div
+            className={styles.Opening2025}
+            style={{ overflow: "hidden", backgroundColor: "hsl(30, 30%, 80%)" }}
+        >
+            <Body />
         </div>
     );
 };

@@ -70,7 +70,7 @@ export default function Text({
                 </span>
             )}
             {type === "title" && (
-                <span
+                <h1
                     ref={ref}
                     style={DefaultStyling}
                     className={`${styles.title} ${styles.text} ${className}`}
@@ -82,7 +82,7 @@ export default function Text({
                             style={UnderlineStyle}
                         />
                     )}
-                </span>
+                </h1>
             )}
             {type === "subtitle" && (
                 <span

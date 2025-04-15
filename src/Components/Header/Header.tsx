@@ -4,7 +4,7 @@ import styles from "./Header.module.css";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { Colors, getTheme } from "../Themes/Theme";
+import { Colors } from "../Themes/Theme";
 const Text = lazy(() => import("../Text/Text"));
 
 export const MobileDevice = () => {
@@ -23,9 +23,19 @@ type StyleAndDimensions = {
 
 type Header = {
     Animated?: boolean;
+    Mode?: "Light" | "Dark";
+    className?: string;
+    IconsClassName?: string;
+    IconsColor?: string;
 };
 
-export default function Header({ Animated = false }: Header) {
+export default function Header({
+    Animated = false,
+    Mode = "Light",
+    className,
+    IconsClassName,
+    IconsColor,
+}: Header) {
     const [Dimensions, setDimensions] = useState<StyleAndDimensions>({
         width: 0,
         height: 0,
@@ -59,8 +69,7 @@ export default function Header({ Animated = false }: Header) {
 
     gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-    const theme = getTheme();
-    const colors = Colors[`${theme}`];
+    const colors = Colors[`${Mode}`];
 
     const Letters = document.getElementsByClassName("Letter");
     const Icons = document.getElementsByClassName("Icon");
@@ -112,20 +121,29 @@ export default function Header({ Animated = false }: Header) {
             }}
             className={styles.HeaderContainer}
         >
-            <div
-                style={{ translate: "0% -100%" }}
-                className={styles.BackgroundColorDiv}
-                ref={HeaderRef}
-            />
-            <div className={styles.Header}>
+            {Animated ? (
+                <div
+                    style={{ translate: "0% -100%" }}
+                    className={styles.BackgroundColorDiv}
+                    ref={HeaderRef}
+                />
+            ) : (
+                <div className={styles.BackgroundColorDiv} ref={HeaderRef} />
+            )}
+
+            <div className={`${styles.Header} ${className}`}>
                 <LeftSide />
                 <div className={styles.LogoDiv}>
                     <div ref={LogoRef} style={TransitionStyles}>
-                        {Animated ? <Logo /> : <LogoUnanimated />}
+                        {Animated ? (
+                            <Logo />
+                        ) : (
+                            <LogoUnanimated color={colors?.textColor.default} />
+                        )}
                     </div>
                 </div>
 
-                <RightSide />
+                <RightSide color={IconsColor} className={IconsClassName} />
             </div>
         </div>
     );
@@ -231,37 +249,48 @@ const LeftSide = () => {
     );
 };
 
-const RightSide = () => {
+const RightSide = ({ className, color }: icon) => {
     return (
         <div className={styles.RightSide}>
             <Button>
-                <Search />
+                <Search color={color} className={className} />
             </Button>
             <Button>
-                <Cart />
+                <Cart color={color} className={className} />
             </Button>
             <div className={styles.Categories}>
                 <Button className={styles.CategoriesIcon}>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="22"
-                        height="22"
-                        viewBox="0 0 256 256"
-                        className={styles.CategoriesIcon}
-                    >
-                        <path
-                            fill="white"
-                            className="Icon"
-                            d="M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16"
-                        />
-                    </svg>
+                    <Categories color={color} className={className} />
                 </Button>
             </div>
         </div>
     );
 };
 
-const Search = () => {
+type icon = {
+    className?: string;
+    color?: string;
+};
+
+const Categories = ({ className, color }: icon) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 256 256"
+            className={styles.CategoriesIcon}
+        >
+            <path
+                fill={color ? color : "white"}
+                className={`${className} Icon`}
+                d="M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16"
+            />
+        </svg>
+    );
+};
+
+const Search = ({ className, color }: icon) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -270,15 +299,15 @@ const Search = () => {
             viewBox="0 0 24 24"
         >
             <path
-                className="Icon"
-                fill="white"
+                className={`${className} Icon`}
+                fill={color ? color : "white"}
                 d="m18.031 16.617l4.283 4.282l-1.415 1.415l-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9s9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617m-2.006-.742A6.98 6.98 0 0 0 18 11c0-3.867-3.133-7-7-7s-7 3.133-7 7s3.133 7 7 7a6.98 6.98 0 0 0 4.875-1.975z"
             />
         </svg>
     );
 };
 
-const Cart = () => {
+const Cart = ({ className, color }: icon) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -287,8 +316,8 @@ const Cart = () => {
             viewBox="0 0 24 24"
         >
             <path
-                className="Icon"
-                fill="white"
+                className={`${className} Icon`}
+                fill={color ? color : "white"}
                 d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1m-9-1a2 2 0 0 1 4 0v1h-4Zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2Z"
             />
         </svg>

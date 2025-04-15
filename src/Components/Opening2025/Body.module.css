@@ -1,0 +1,103 @@
+.Body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.Body img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.Body span,
+.Body h1 {
+    color: white;
+}
+
+.Panel {
+    position: absolute;
+    top: 5rem;
+    width: 100%;
+    height: 35rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: blue;
+}
+
+.IntroductionContent {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 35rem;
+}
+
+
+.Content > h1, .Content > span {
+    position: absolute;
+}
+
+.Content > .Title  {
+    font-size: 4rem;
+    top: 2rem;
+    left: 1rem;
+    text-transform: uppercase;
+}
+
+.Content > .Intro1 {
+    bottom: 30%;
+    right: 2rem;
+    width: 40rem;
+}
+
+
+.First > .Content {
+    position: absolute;
+    width: 100%;
+}
+
+.First .Images {
+    height: 70%;
+}
+
+.HeroSection {
+    position: fixed;
+    top: 1rem;
+    z-index: 2;
+}
+
+.Logo {
+    left: 1rem;
+}
+
+.HeroSection h1 {
+    font-size: 2.5rem;
+    letter-spacing: -0.025rem;
+    font-weight: 700;
+}
+
+.HeroSection h1,
+.HeroSection span {
+    text-transform: uppercase;
+}
+
+.Logo span {
+    position: absolute;
+    font-size: 1rem;
+    transform: translate(0.25rem, 0.5rem);
+}
+
+.Title {
+    align-self: center;
+}
+
+.Nav {
+    right: 1rem;
+    display: flex;
+    transform: translate(0, 0.75rem);
+}

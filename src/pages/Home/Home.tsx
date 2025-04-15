@@ -14,12 +14,12 @@ export default function HomePage() {
             smoothWheel: true,
         })
 
-        const animatte = (time: number) => {
+        const animate = (time: number) => {
             lenis.current?.raf(time);
-            requestAnimationFrame(animatte);
+            requestAnimationFrame(animate);
         };
 
-        requestAnimationFrame(animatte);
+        requestAnimationFrame(animate);
 
         return () => {
             lenis.current?.destroy();

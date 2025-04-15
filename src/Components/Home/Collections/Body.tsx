@@ -35,8 +35,7 @@ export default function Body() {
                 <Text
                     type="title"
                     ref={TitleRef}
-                    style={{ opacity: 0, translate: "0 50px", fontWeight: 400 }}
-                    AffectedByTheme={false}
+                    style={{ opacity: 0, translate: "0 50px", fontWeight: 400, color: "White" }}
                 >
                     Opening 2025
                 </Text>
@@ -45,7 +44,7 @@ export default function Body() {
                     style={{ opacity: 0, translate: "0 50px", zIndex: 2 }}
                 >
                     <Button href="/opening-2025" UnderlineButton color="White">
-                        <Text AffectedByTheme={false}>
+                        <Text>
                             Shop The Collection
                         </Text>
                     </Button>

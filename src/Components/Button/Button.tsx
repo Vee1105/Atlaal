@@ -38,7 +38,6 @@ const Button = ({
 }: ButtonProps) => {
     const theme = useAppSelector((state) => state.theme.mode);
     const style = {
-        color: color ? color : theme === "Light" ? "#000" : "#fff",
         width: width ? width : "auto",
         height: height ? height : "auto",
         padding: UnderlineButton ? "0px" : "5px 20px",
@@ -47,7 +46,6 @@ const Button = ({
     };
 
     const defaultButtonStyling = {
-        color: color ? color : theme === "Light" ? "#000" : "#fff",
         width: width ? width : "auto",
         height: height ? height : "auto",
         padding: "5px 10px",
@@ -69,6 +67,11 @@ const Button = ({
 
     useGSAP(() => {
         gsap.to(underlineButton.current, {
+            scrollTrigger: {
+                trigger: underlineButton.current,
+                start: "top 95%",
+                toggleActions: "play none none reverse",
+            },
             duration: 0.2,
             width: hovered ? "0%" : "100%",
             ease: "power3.inOut",
