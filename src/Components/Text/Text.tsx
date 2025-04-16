@@ -100,7 +100,7 @@ export default function Text({
                 </span>
             )}
             {type === "body" && (
-                <span
+                <p
                     ref={ref}
                     style={DefaultStyling}
                     className={`${styles.body} ${styles.text} ${className}`}
@@ -112,7 +112,7 @@ export default function Text({
                             style={UnderlineStyle}
                         />
                     )}
-                </span>
+                </p>
             )}
             {type === "caption" && (
                 <span

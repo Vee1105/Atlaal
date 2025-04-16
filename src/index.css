@@ -197,10 +197,6 @@ a {
   cursor: pointer;
 }
 
-span {
-  transition: 0.5s ease-in-out;
-}
-
 body {
   padding: 0;
   margin: 0;
@@ -225,11 +221,6 @@ input:focus {
 
 input::placeholder {
   color: hsla(0, 0%, 95%, 0.7);
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {

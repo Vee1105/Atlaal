@@ -8,18 +8,57 @@ const Text = lazy(() => import("../../Components/Text/Text"));
 
 const Body = () => {
     gsap.registerPlugin(ScrollTrigger);
+    useGSAP(() => {
+        const mainTL = gsap.timeline();
+        const ImageTL = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".Panel",
+                start: "top top",
+                end: "+=50%",
+                markers: true,
+                toggleActions: "play none none reverse",
+                pin: true,
+                scrub: 1,
+            },
+        });
+        ImageTL.to(".Image1", {
+            height: "40%",
+        });
+        ImageTL.to(".Image1", {
+            height: "0%",
+        })
+        gsap.to(".ContentTitle", {
+            scrollTrigger: {
+                start: "top top",
+                end: "+=150%",
+                markers: true,
+                toggleActions: "play none none reverse",
+                pin: true,
+                scrub: 1,
+            },
+            transform: "translateY(-500%)",
+        });
 
-    // useGSAP(() => {
-    //     gsap.to(".Panel", {
-    //         scrollTrigger: {
-    //             trigger: ".Panel",
-    //             start: "top 10%",
-    //             end: "+=300%",
-    //             pin: true,
-    //             markers: true,
-    //         }
-    //     })
-    // });
+        gsap.to(".Intro1", {
+            scrollTrigger: {
+                start: "top top",
+                end: "+=150%",
+                markers: true,
+                toggleActions: "play none none reverse",
+                scrub: 1,
+            },
+            transform: "translateY(-500%)",
+        });
+
+        
+        
+
+        mainTL.fromTo(
+            ".HeroSection",
+            { transform: "translateY(-100%)" },
+            { transform: "translateY(0%)", duration: 1, ease: "power3.inOut" }
+        );
+    });
 
     return (
         <div className={styles.Body}>
@@ -56,22 +95,36 @@ const Body = () => {
                     className={`${styles.IntroductionContent} ${styles.First} IntroductionContent First`}
                 >
                     <div className={`${styles.Content} Content`}>
-                        <Text type="title" className={`${styles.Title}`}>
-                            Welcome to Atlaal
-                        </Text>
-                        <Text type="body" className={`${styles.Intro1} Intro1`}>
-                            where the essence of minimalism meets the rich
-                            tapestry of history. Our inaugural 2025 collection
-                            is a celebration of elegance, craftsmanship, and
-                            cultural heritage, designed for those who appreciate
-                            the beauty in simplicity and the stories woven into
-                            every thread.
-                        </Text>
+                        <div
+                            className={`${styles.ContentTitleDiv} ContentTitleDiv`}
+                        >
+                            <Text
+                                type="title"
+                                className={`${styles.ContentTitle} ContentTitle `}
+                            >
+                                Welcome to Atlaal
+                            </Text>
+                        </div>
+                        <div className={`${styles.ContentInfo} ContentInfo`}>
+                            <Text
+                                type="body"
+                                className={`${styles.Intro1} Intro1`}
+                            >
+                                where the essence of minimalism meets the rich
+                                tapestry of history. Our inaugural 2025
+                                collection is a celebration of elegance,
+                                craftsmanship, and cultural heritage, designed
+                                for those who appreciate the beauty in
+                                simplicity and the stories woven into every
+                                thread.
+                            </Text>
+                        </div>
                     </div>
                     <div className={`${styles.Images} Images`}>
                         <img
                             src="/Images/Opening2025/img7.webp"
                             alt="Opening2025"
+                            className="Image1"
                         />
                     </div>
                 </div>
@@ -79,14 +132,20 @@ const Body = () => {
                     className={`${styles.IntroductionContent} ${styles.Second} IntroductionContent Second`}
                 >
                     <div className={`${styles.Content} Content`}>
-                        <Text type="body" className="Intro2">
+                        <Text type="body" className={`${styles.Intro2} Intro2`}>
                             At Atlaal, we believe that true luxury lies in the
                             details. Each piece in our collection is
                             meticulously handcrafted, reflecting the artistry of
-                            ancient Arab and modern fashion. We draw inspiration
-                            from the timeless silhouettes and intricate patterns
-                            of the past, reimagining them for the contemporary
-                            individual who values both style and substance.
+                            ancient Arab and modern fashion.
+                        </Text>
+                        <Text
+                            type="body"
+                            className={`${styles.Intro2F} Intro2F`}
+                        >
+                            We draw inspiration from the timeless silhouettes
+                            and intricate patterns of the past, reimagining them
+                            for the contemporary individual who values both
+                            style and substance.
                         </Text>
                     </div>
                     <div className={`${styles.Images} Images`}>
@@ -96,10 +155,6 @@ const Body = () => {
                         />
                         <img
                             src="/Images/Opening2025/img3.webp"
-                            alt="Opening2025"
-                        />
-                        <img
-                            src="/Images/Opening2025/img4.webp"
                             alt="Opening2025"
                         />
                     </div>
