@@ -119,34 +119,36 @@
 
 /* SECOND SLIDE */
 
+.Second {
+    /* background-color: blue; */
+}
+
+.Second .Content {
+    position: absolute;
+    left: 5rem;
+    transform: translate(0, 70%);
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 40rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;  
+    /* background-color: red; */
+}
+
 .Second .Images {
     position: absolute;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    width: 50%;
-    height: 30%;
-    background-color: red;
-    transform: translate(0, 50%);
+    flex-direction: column;
+    gap: 5rem;
+    width: 30%;
+    height: 100%;
+    right: 10rem;
+    translate: 0 100%;
+    z-index: 5;
 }
 
-.Second .Images img {
-    width: 200%;
-    object-fit: cover;
-}
-
-.Second .Intro2,
-.Second .Intro2F {
-    z-index: 2;
-    width: 40rem;
-    right: 2rem;
-    font-size: 1.7rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    transform: translate(0, 0%);
-}
-
-.Second .Intro2F {
-    transform: translate(0, 130%);
+.Second img {
+    height: 15rem;
 }

@@ -15,7 +15,7 @@ const Body = () => {
                 trigger: ".Panel",
                 start: "top top",
                 end: "+=50%",
-                markers: true,
+                // markers: true,
                 toggleActions: "play none none reverse",
                 pin: true,
                 scrub: 1,
@@ -31,7 +31,7 @@ const Body = () => {
             scrollTrigger: {
                 start: "top top",
                 end: "+=150%",
-                markers: true,
+                // markers: true,
                 toggleActions: "play none none reverse",
                 pin: true,
                 scrub: 1,
@@ -43,7 +43,7 @@ const Body = () => {
             scrollTrigger: {
                 start: "top top",
                 end: "+=150%",
-                markers: true,
+                // markers: true,
                 toggleActions: "play none none reverse",
                 scrub: 1,
             },
@@ -204,7 +204,6 @@ const Body = () => {
                 </div>
                 <div className={`${styles.Images} Images`}></div>
             </section>
-            <section className={`${styles.Story}   Story Panel`}></section>
             <section className="Plans Panel"></section>
             <section className="Items Panel"></section>
             <section className="ContactUs Panel"></section>
