@@ -10,11 +10,12 @@ const Body = () => {
     gsap.registerPlugin(ScrollTrigger);
     useGSAP(() => {
         const mainTL = gsap.timeline();
+        // gsap.set(".Image2", { translateY: "-500%" });
         const ImageTL = gsap.timeline({
             scrollTrigger: {
                 trigger: ".Panel",
                 start: "top top",
-                end: "+=50%",
+                end: "+=150%",
                 // markers: true,
                 toggleActions: "play none none reverse",
                 pin: true,
@@ -26,7 +27,10 @@ const Body = () => {
         });
         ImageTL.to(".Image1", {
             height: "0%",
-        })
+        });
+        ImageTL.to(".Image2", {
+            translateY: "0%",
+        });
         gsap.to(".ContentTitle", {
             scrollTrigger: {
                 start: "top top",
@@ -49,9 +53,6 @@ const Body = () => {
             },
             transform: "translateY(-500%)",
         });
-
-        
-        
 
         mainTL.fromTo(
             ".HeroSection",
@@ -149,17 +150,23 @@ const Body = () => {
                         </Text>
                     </div>
                     <div className={`${styles.Images} Images`}>
-                        <img
-                            src="/Images/Opening2025/img2.webp"
-                            alt="Opening2025"
-                        />
-                        <img
-                            src="/Images/Opening2025/img3.webp"
-                            alt="Opening2025"
-                        />
+                        <div className={`${styles.Image2Div} Image2Div`}>
+                            <img
+                                src="/Images/Opening2025/img2.webp"
+                                alt="Opening2025"
+                                className={`Image2 ${styles.Image2}`}
+                            />
+                        </div>
+                        <div className={`${styles.Image2Div} ${styles.Left} Image2Div`}>
+                            <img
+                                src="/Images/Opening2025/img3.webp"
+                                alt="Opening2025"
+                                className={`Image2 ${styles.Left} ${styles.Image2}`}
+                            />
+                        </div>
                     </div>
                 </div>
-                <div
+                {/* <div
                     className={`${styles.IntroductionContent} ${styles.Third} IntroductionContent Third`}
                 >
                     <div className={`${styles.Content} Content`}>
@@ -202,7 +209,7 @@ const Body = () => {
                         />
                     </div>
                 </div>
-                <div className={`${styles.Images} Images`}></div>
+                <div className={`${styles.Images} Images`}></div> */}
             </section>
             <section className="Plans Panel"></section>
             <section className="Items Panel"></section>
