@@ -51,8 +51,6 @@ const Body = () => {
         );
     });
 
-    const greet = (name:string)
-
     return (
         <div className={styles.Body}>
             <div
