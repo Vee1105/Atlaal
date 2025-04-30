@@ -59,6 +59,7 @@
 
 .IntroductionContent {
     height: 100vh;
+    width: 100vw;
     overflow: hidden;
 }
 
@@ -75,6 +76,7 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     will-change: transform;
     /* background-color: red; */
+    z-index: 2;
 }
 
 .ContentTitleDiv > .ContentTitle {
@@ -89,6 +91,7 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     will-change: transform;
     text-transform: uppercase;
+    z-index: 2;
 }
 
 /* FIRST SLIDE */
@@ -141,32 +144,31 @@
     display: flex;
     flex-direction: column;
     gap: 4rem;  
+    will-change: transform;
+    z-index: 2;
+    texta
+}
+
+.ContentDiv {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    background-color: red;
+    z-index: 3;
 }
 
 .Second .Images {
-    position: absolute;
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 1.5rem;
-    width: 50%;
-    height: 50%;
-    right: 10rem;
  }
 
 .Image2Div {
-    /* overflow: hidden; */
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    width: 100%;
-}
-
-.Image2Div .Image2 {
-    width: 100%;
-    height: 13rem;
-}
-
-.Images .Left {
-    transform: translate(-100%, 0);
     position: absolute;
-    left: 0;
+    width: 40%;
+    aspect-ratio: 1/1;
+    translate: 0% 0%;
+    right: 5rem;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    /* overflow: visible; */
 }

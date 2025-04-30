@@ -10,56 +10,48 @@ const Body = () => {
     gsap.registerPlugin(ScrollTrigger);
     useGSAP(() => {
         const mainTL = gsap.timeline();
-        // gsap.set(".Image2", { translateY: "-500%" });
+        gsap.set([".Image2", ".Intro2", ".Intro2F"], { translateY: "-100%" });
+        const TextTL = gsap.timeline({
+            scrollTrigger: {
+                start: "top top",
+                markers: true,
+                toggleActions: "play none none reverse",
+                pin: true,
+                scrub: 1,
+            },
+        });
         const ImageTL = gsap.timeline({
             scrollTrigger: {
                 trigger: ".Panel",
-                start: "top top",
-                end: "+=150%",
-                // markers: true,
+                markers: true,
                 toggleActions: "play none none reverse",
                 pin: true,
-                scrub: 1,
+                scrub: 2,
             },
         });
         ImageTL.to(".Image1", {
-            height: "40%",
-        });
-        ImageTL.to(".Image1", {
+            scale: 0.7,
             height: "0%",
+            duration: 1,
         });
         ImageTL.to(".Image2", {
+            duration: 4,
             translateY: "0%",
         });
-        gsap.to(".ContentTitle", {
-            scrollTrigger: {
-                start: "top top",
-                end: "+=150%",
-                // markers: true,
-                toggleActions: "play none none reverse",
-                pin: true,
-                scrub: 1,
-            },
+        TextTL.to([".ContentTitle", ".Intro1"], {
             transform: "translateY(-500%)",
         });
-
-        gsap.to(".Intro1", {
-            scrollTrigger: {
-                start: "top top",
-                end: "+=150%",
-                // markers: true,
-                toggleActions: "play none none reverse",
-                scrub: 1,
-            },
-            transform: "translateY(-500%)",
+        TextTL.to([".Intro2", ".Intro2F"], {
+            transform: "translateY(0%)",
         });
-
         mainTL.fromTo(
             ".HeroSection",
             { transform: "translateY(-100%)" },
             { transform: "translateY(0%)", duration: 1, ease: "power3.inOut" }
         );
     });
+
+    const greet = (name:string)
 
     return (
         <div className={styles.Body}>
@@ -133,21 +125,28 @@ const Body = () => {
                     className={`${styles.IntroductionContent} ${styles.Second} IntroductionContent Second`}
                 >
                     <div className={`${styles.Content} Content`}>
-                        <Text type="body" className={`${styles.Intro2} Intro2`}>
-                            At Atlaal, we believe that true luxury lies in the
-                            details. Each piece in our collection is
-                            meticulously handcrafted, reflecting the artistry of
-                            ancient Arab and modern fashion.
-                        </Text>
-                        <Text
-                            type="body"
-                            className={`${styles.Intro2F} Intro2F`}
-                        >
-                            We draw inspiration from the timeless silhouettes
-                            and intricate patterns of the past, reimagining them
-                            for the contemporary individual who values both
-                            style and substance.
-                        </Text>
+                        <div className={`${styles.ContentDiv}`}>
+                            <Text
+                                type="body"
+                                className={`${styles.Intro2} Intro2`}
+                            >
+                                At Atlaal, we believe that true luxury lies in
+                                the details. Each piece in our collection is
+                                meticulously handcrafted, reflecting the
+                                artistry of ancient Arab and modern fashion.
+                            </Text>
+                        </div>
+                        <div className={`${styles.ContentDiv}`}>
+                            <Text
+                                type="body"
+                                className={`${styles.Intro2F} Intro2F`}
+                            >
+                                We draw inspiration from the timeless
+                                silhouettes and intricate patterns of the past,
+                                reimagining them for the contemporary individual
+                                who values both style and substance.
+                            </Text>
+                        </div>
                     </div>
                     <div className={`${styles.Images} Images`}>
                         <div className={`${styles.Image2Div} Image2Div`}>
@@ -155,13 +154,6 @@ const Body = () => {
                                 src="/Images/Opening2025/img2.webp"
                                 alt="Opening2025"
                                 className={`Image2 ${styles.Image2}`}
-                            />
-                        </div>
-                        <div className={`${styles.Image2Div} ${styles.Left} Image2Div`}>
-                            <img
-                                src="/Images/Opening2025/img3.webp"
-                                alt="Opening2025"
-                                className={`Image2 ${styles.Left} ${styles.Image2}`}
                             />
                         </div>
                     </div>
