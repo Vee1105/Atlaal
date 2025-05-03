@@ -28,7 +28,7 @@ const Opening2025 = () => {
 
     return (
         <div
-            className={styles.Opening2025}
+            className={`${styles.Opening2025} Opening2025`}
             style={{ overflow: "hidden", backgroundColor: "hsl(30, 30%, 70%)" }}
         >
             <Body />
